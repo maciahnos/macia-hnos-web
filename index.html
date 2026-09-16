@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macia Hnos. y Cía. S.R.L. | Insumos para Panadería, Repostería y Cocina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          heading: ['Poppins', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eef5ff',
+            100: '#dcebff',
+            200: '#b3d4ff',
+            300: '#7ab3ff',
+            400: '#3f8bff',
+            500: '#1655a3',
+            600: '#124a8c',
+            700: '#0e3b70',
+            800: '#0b3155',
+            900: '#082441',
+          },
+          ember: {
+            400: '#f5a24d',
+            500: '#ef8c2a',
+            600: '#d9721a',
+          },
+        },
+      },
+    },
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; }
+  h1, h2, h3, h4, .font-heading { font-family: 'Poppins', sans-serif; }
+  .blob {
+    background: radial-gradient(circle at 30% 30%, rgba(63,139,255,0.35), transparent 60%),
+                radial-gradient(circle at 75% 60%, rgba(239,140,42,0.30), transparent 55%);
+  }
+</style>
+</head>
+<body class="bg-white text-brand-900 font-body antialiased">
+
+<!-- Top utility bar -->
+<div class="bg-brand-900 text-brand-100 text-xs sm:text-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a href="tel:+541146126365" class="hidden sm:flex items-center gap-1.5 hover:text-white transition-colors">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a2.25 2.25 0 00-2.297.586l-.787.788a11.25 11.25 0 01-5.958-5.958l.789-.787a2.25 2.25 0 00.586-2.297L6.963 3.63a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 5.25v1.5z"/></svg>
+        4612-6365
+      </a>
+      <span class="flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+        Culpina 746, Flores, CABA
+      </span>
+    </div>
+    <span class="font-medium text-white/90">Más de 60 años equipando cocinas argentinas</span>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-brand-100 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="#inicio" class="flex items-center gap-3">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="21" cy="21" r="20" stroke="#1655a3" stroke-width="2"/>
+          <path d="M21 10 L28 26 L14 26 Z" stroke="#1655a3" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+          <circle cx="21" cy="19" r="2.4" fill="#ef8c2a"/>
+        </svg>
+        <div class="leading-tight">
+          <p class="font-heading font-800 text-xl sm:text-2xl text-brand-500 tracking-tight">MACIA <span class="text-brand-900">HNOS.</span></p>
+          <p class="text-[10px] sm:text-xs tracking-[0.25em] text-brand-600 font-semibold -mt-1">Y CIA. S.R.L. · DESDE 1960</p>
+        </div>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-9 font-medium text-brand-800">
+        <a href="#inicio" class="hover:text-ember-600 transition-colors">Inicio</a>
+        <a href="#categorias" class="hover:text-ember-600 transition-colors">Categorías</a>
+        <a href="#catalogo" class="hover:text-ember-600 transition-colors">Productos</a>
+        <a href="#nosotros" class="hover:text-ember-600 transition-colors">Nosotros</a>
+        <a href="#contacto" class="hover:text-ember-600 transition-colors">Contacto</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/5491127367121?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener"
+           class="hidden sm:inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-600 text-white font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm shadow-ember-500/30">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.94 11.94 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.13 1.6 5.93L0 24l6.4-1.68a11.87 11.87 0 005.64 1.44h.01c6.54 0 11.85-5.3 11.85-11.85 0-3.17-1.24-6.14-3.38-8.43zM12.05 21.4h-.01a9.6 9.6 0 01-4.9-1.34l-.35-.21-3.63.95.97-3.55-.23-.36a9.58 9.58 0 01-1.47-5.1c0-5.3 4.32-9.62 9.63-9.62 2.57 0 4.98 1 6.8 2.82a9.56 9.56 0 012.82 6.8c0 5.31-4.32 9.61-9.63 9.61zm5.28-7.2c-.29-.15-1.71-.85-1.98-.94-.27-.1-.46-.15-.66.14-.19.29-.75.94-.92 1.13-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.32-1.44-.86-.76-1.44-1.71-1.6-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.2.05-.36-.02-.51-.08-.15-.66-1.6-.91-2.19-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43 0 1.43 1.04 2.82 1.19 3.01.15.2 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.71-.7 1.95-1.37.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>
+          WhatsApp
+        </a>
+        <button id="menuBtn" class="lg:hidden text-brand-800 p-2" aria-label="Abrir menú">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-brand-100 bg-white">
+    <nav class="flex flex-col px-4 py-3 font-medium text-brand-800">
+      <a href="#inicio" class="py-2.5 border-b border-brand-50">Inicio</a>
+      <a href="#categorias" class="py-2.5 border-b border-brand-50">Categorías</a>
+      <a href="#catalogo" class="py-2.5 border-b border-brand-50">Productos</a>
+      <a href="#nosotros" class="py-2.5 border-b border-brand-50">Nosotros</a>
+      <a href="#contacto" class="py-2.5">Contacto</a>
+      <a href="https://wa.me/5491127367121?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener"
+         class="mt-3 inline-flex items-center justify-center gap-2 bg-ember-500 text-white font-semibold px-5 py-3 rounded-full">
+        Escribinos por WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="inicio" class="relative overflow-hidden bg-brand-900">
+  <div class="absolute inset-0 blob"></div>
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-500/30 blur-3xl"></div>
+  <div class="absolute -bottom-32 -left-16 w-96 h-96 rounded-full bg-ember-500/20 blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <span class="inline-flex items-center gap-2 bg-white/10 text-brand-100 text-sm font-semibold px-4 py-1.5 rounded-full mb-6 ring-1 ring-white/20">
+        <svg class="w-4 h-4 text-ember-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 1l2.6 5.9L19 8l-4.8 4.1L15.5 19 10 15.6 4.5 19l1.3-6.9L1 8l6.4-1.1L10 1z"/></svg>
+        Desde 1960 al servicio de la gastronomía
+      </span>
+      <h1 class="font-heading text-4xl sm:text-5xl lg:text-[3.4rem] font-800 text-white leading-[1.08] tracking-tight">
+        Todo lo que tu cocina necesita, <span class="text-ember-400">en un solo lugar.</span>
+      </h1>
+      <p class="mt-6 text-lg text-brand-100/90 max-w-xl">
+        Materias primas, repostería, moldes, bazar y condimentos para panaderías, pastelerías y comercios gastronómicos. Calidad y stock permanente desde hace más de sesenta años.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#catalogo" class="inline-flex items-center gap-2 bg-white text-brand-700 font-semibold px-7 py-3.5 rounded-full hover:bg-brand-50 transition-colors shadow-lg shadow-black/10">
+          Ver catálogo
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+        </a>
+        <a href="https://wa.me/5491127367121?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-600 text-white font-semibold px-7 py-3.5 rounded-full transition-colors">
+          Hacé tu pedido por WhatsApp
+        </a>
+      </div>
+
+      <div class="mt-12 grid grid-cols-3 gap-6 max-w-md">
+        <div>
+          <p class="font-heading text-3xl font-800 text-white">60+</p>
+          <p class="text-sm text-brand-200">Años de trayectoria</p>
+        </div>
+        <div>
+          <p class="font-heading text-3xl font-800 text-white">250+</p>
+          <p class="text-sm text-brand-200">Productos en catálogo</p>
+        </div>
+        <div>
+          <p class="font-heading text-3xl font-800 text-white">6</p>
+          <p class="text-sm text-brand-200">Rubros que cubrimos</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative hidden lg:block">
+      <div class="relative rounded-[2rem] overflow-hidden ring-1 ring-white/15 shadow-2xl">
+        <img src="images/img-23685.jpg" alt="Delantal e insumos Macia Hnos" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-8 -left-10 bg-white rounded-2xl shadow-xl p-5 w-64">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-full bg-ember-50 flex items-center justify-center">
+            <svg class="w-6 h-6 text-ember-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-700 text-brand-900 text-sm">Pedidos mayoristas</p>
+            <p class="text-xs text-brand-600">Entregas a comercios y fábricas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section class="bg-white border-b border-brand-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+    <div class="flex flex-col items-center gap-2">
+      <svg class="w-8 h-8 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+      <p class="text-sm font-semibold text-brand-900">Calidad garantizada</p>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <svg class="w-8 h-8 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/></svg>
+      <p class="text-sm font-semibold text-brand-900">Stock permanente</p>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <svg class="w-8 h-8 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v11.177m0-11.177L12 4.5m2.25 3.073L9 4.5m0 0L5.106 6.447a2.25 2.25 0 00-1.183 1.981v6.822"/></svg>
+      <p class="text-sm font-semibold text-brand-900">Envíos a todo el país</p>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <svg class="w-8 h-8 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+      <p class="text-sm font-semibold text-brand-900">Atención personalizada</p>
+    </div>
+  </div>
+</section>
+
+<!-- Catálogo -->
+<section id="categorias" class="py-20 lg:py-28 bg-brand-50/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <p class="text-ember-600 font-semibold tracking-wide uppercase text-sm mb-2">Catálogo completo</p>
+      <h2 class="font-heading text-3xl sm:text-4xl font-800 text-brand-900">Más de 250 productos disponibles</h2>
+      <p class="mt-4 text-brand-700">Elegí un rubro o buscá por nombre. Catálogo real, actualizado directamente desde nuestro sistema.</p>
+    </div>
+
+    <div id="catFilters" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 mb-14">
+      <button data-cat="todos" class="cat-tile group bg-white rounded-2xl border-2 border-transparent overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+        <div class="aspect-[4/3] flex items-center justify-center bg-brand-900">
+          <svg class="w-14 h-14 text-white/90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/>
+          </svg>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <p class="font-heading font-700 text-brand-900 text-sm sm:text-base">Todos</p>
+          <span class="cat-count text-xs font-semibold text-brand-400"></span>
+        </div>
+      </button>
+      <button data-cat="materias-primas" class="cat-tile group bg-white rounded-2xl border-2 border-transparent overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+        <div class="aspect-[4/3] flex items-center justify-center bg-brand-500">
+          <svg class="w-14 h-14 text-white/90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M6 8h12l-1.2 11a1 1 0 01-1 1H8.2a1 1 0 01-1-1L6 8z"/>
+            <path d="M9 8V6.5a3 3 0 016 0V8"/>
+          </svg>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <p class="font-heading font-700 text-brand-900 text-sm sm:text-base">Materias Primas</p>
+          <span class="cat-count text-xs font-semibold text-brand-400"></span>
+        </div>
+      </button>
+      <button data-cat="bazar-cocina" class="cat-tile group bg-white rounded-2xl border-2 border-transparent overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+        <div class="aspect-[4/3] flex items-center justify-center bg-brand-600">
+          <svg class="w-14 h-14 text-white/90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M4 10h16v2a6 6 0 01-6 6h-4a6 6 0 01-6-6v-2z"/>
+            <path d="M4 10V8h16v2"/>
+            <path d="M9 8V6M15 8V6"/>
+          </svg>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <p class="font-heading font-700 text-brand-900 text-sm sm:text-base">Bazar / Cocina</p>
+          <span class="cat-count text-xs font-semibold text-brand-400"></span>
+        </div>
+      </button>
+      <button data-cat="reposteria" class="cat-tile group bg-white rounded-2xl border-2 border-transparent overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+        <div class="aspect-[4/3] flex items-center justify-center bg-ember-500">
+          <svg class="w-14 h-14 text-white/90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M7 11h10l-1 8a2 2 0 01-2 2h-4a2 2 0 01-2-2l-1-8z"/>
+            <path d="M6 11a6 4 0 0112 0"/>
+            <path d="M12 4v3"/>
+            <circle cx="12" cy="3.3" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <p class="font-heading font-700 text-brand-900 text-sm sm:text-base">Repostería</p>
+          <span class="cat-count text-xs font-semibold text-brand-400"></span>
+        </div>
+      </button>
+      <button data-cat="condimentos" class="cat-tile group bg-white rounded-2xl border-2 border-transparent overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+        <div class="aspect-[4/3] flex items-center justify-center bg-brand-700">
+          <svg class="w-14 h-14 text-white/90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="7" y="9" width="10" height="11" rx="2"/>
+            <path d="M9 9V6a1 1 0 011-1h4a1 1 0 011 1v3"/>
+            <path d="M9 13h6M9 16h6"/>
+          </svg>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <p class="font-heading font-700 text-brand-900 text-sm sm:text-base">Condimentos</p>
+          <span class="cat-count text-xs font-semibold text-brand-400"></span>
+        </div>
+      </button>
+      <button data-cat="moldes" class="cat-tile group bg-white rounded-2xl border-2 border-transparent overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+        <div class="aspect-[4/3] flex items-center justify-center bg-brand-500">
+          <svg class="w-14 h-14 text-white/90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="7"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <p class="font-heading font-700 text-brand-900 text-sm sm:text-base">Moldes</p>
+          <span class="cat-count text-xs font-semibold text-brand-400"></span>
+        </div>
+      </button>
+      <button data-cat="parpen" class="cat-tile group bg-white rounded-2xl border-2 border-transparent overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all text-left">
+        <div class="aspect-[4/3] flex items-center justify-center bg-brand-800">
+          <svg class="w-14 h-14 text-white/90" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M4 8l8-4 8 4-8 4-8-4z"/>
+            <path d="M4 8v8l8 4 8-4V8"/>
+            <path d="M12 12v8"/>
+          </svg>
+        </div>
+        <div class="p-4 flex items-center justify-between">
+          <p class="font-heading font-700 text-brand-900 text-sm sm:text-base">Productos Parpen</p>
+          <span class="cat-count text-xs font-semibold text-brand-400"></span>
+        </div>
+      </button>
+    </div>
+
+    <div id="catalogo" class="scroll-mt-24">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-4 justify-between mb-8">
+        <div class="relative w-full sm:max-w-sm">
+          <svg class="w-5 h-5 text-brand-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+          <input id="searchInput" type="text" placeholder="Buscar producto (ej: molde, esencia, delantal)" class="w-full pl-12 pr-4 py-3 rounded-full border border-brand-200 focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white shadow-sm">
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+          <span id="activeCatLabel" class="text-brand-700 font-semibold"></span>
+          <button id="resetFilters" class="hidden text-ember-600 font-semibold hover:text-ember-700">Ver todos ✕</button>
+        </div>
+      </div>
+
+      <p id="resultsCount" class="text-sm text-brand-500 mb-5"></p>
+
+      <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6"></div>
+
+      <p id="noResults" class="hidden text-center text-brand-500 py-16">No encontramos productos con esa búsqueda. Probá con otro término o cambiá el filtro.</p>
+
+      <div class="mt-12 text-center">
+        <button id="loadMoreBtn" class="hidden inline-flex items-center gap-2 border-2 border-brand-500 text-brand-600 font-semibold px-7 py-3 rounded-full hover:bg-brand-500 hover:text-white transition-colors">
+          Ver más productos
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nosotros -->
+<section id="nosotros" class="py-20 lg:py-28 bg-brand-900 relative overflow-hidden">
+  <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-brand-500/20 blur-3xl"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="relative">
+      <div class="rounded-[2rem] overflow-hidden ring-1 ring-white/10 shadow-2xl">
+        <img src="images/img-23655.jpg" alt="Productos Macia Hnos desde 1960" class="w-full h-full object-cover">
+      </div>
+      <div class="absolute -bottom-6 -right-6 bg-ember-500 text-white rounded-2xl px-6 py-4 shadow-xl">
+        <p class="font-heading font-800 text-3xl">1960</p>
+        <p class="text-xs uppercase tracking-wider">Año de fundación</p>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-ember-400 font-semibold tracking-wide uppercase text-sm mb-2">Acerca de nosotros</p>
+      <h2 class="font-heading text-3xl sm:text-4xl font-800 text-white">Una historia de familia y trayectoria</h2>
+      <p class="mt-6 text-brand-100/90 leading-relaxed">
+        Macia Hnos. nació en 1960 de la mano de cuatro amigos —entre ellos Químicos, Bioquímicos y Farmacéuticos, dos de los cuales eran los hermanos Macia— con la idea de acompañar a la industria gastronómica argentina.
+      </p>
+      <p class="mt-4 text-brand-100/90 leading-relaxed">
+        Desde entonces supimos cuidar, año tras año, a nuestros clientes, proveedores y personal, construyendo una empresa sólida basada en la confianza y la calidad de nuestros productos.
+      </p>
+
+      <div class="mt-10 grid sm:grid-cols-2 gap-5">
+        <div class="flex gap-3 items-start">
+          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-ember-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3"/></svg>
+          </div>
+          <div>
+            <p class="text-white font-heading font-600">Más de 6 décadas</p>
+            <p class="text-sm text-brand-200">Experiencia acumulada en el rubro gastronómico.</p>
+          </div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-ember-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+          </div>
+          <div>
+            <p class="text-white font-heading font-600">Trato familiar</p>
+            <p class="text-sm text-brand-200">Cuidamos a cada cliente como el primer día.</p>
+          </div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-ember-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+          </div>
+          <div>
+            <p class="text-white font-heading font-600">Stock permanente</p>
+            <p class="text-sm text-brand-200">Materia prima e insumos siempre disponibles.</p>
+          </div>
+        </div>
+        <div class="flex gap-3 items-start">
+          <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-ember-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v11.177m0-11.177L12 4.5m2.25 3.073L9 4.5m0 0L5.106 6.447a2.25 2.25 0 00-1.183 1.981v6.822"/></svg>
+          </div>
+          <div>
+            <p class="text-white font-heading font-600">Entregas ágiles</p>
+            <p class="text-sm text-brand-200">Despachamos pedidos a todo el país.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA banner -->
+<section class="py-16 bg-ember-500">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+    <div>
+      <h3 class="font-heading text-2xl sm:text-3xl font-800 text-white">¿Necesitás hacer un pedido hoy?</h3>
+      <p class="text-white/90 mt-2">Escribinos por WhatsApp y te respondemos al instante con stock y precios.</p>
+    </div>
+    <a href="https://wa.me/5491127367121?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener"
+       class="inline-flex items-center gap-2 bg-white text-ember-600 font-semibold px-8 py-4 rounded-full hover:bg-brand-50 transition-colors shadow-lg shrink-0">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.94 11.94 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.13 1.6 5.93L0 24l6.4-1.68a11.87 11.87 0 005.64 1.44h.01c6.54 0 11.85-5.3 11.85-11.85 0-3.17-1.24-6.14-3.38-8.43zM12.05 21.4h-.01a9.6 9.6 0 01-4.9-1.34l-.35-.21-3.63.95.97-3.55-.23-.36a9.58 9.58 0 01-1.47-5.1c0-5.3 4.32-9.62 9.63-9.62 2.57 0 4.98 1 6.8 2.82a9.56 9.56 0 012.82 6.8c0 5.31-4.32 9.61-9.63 9.61zm5.28-7.2c-.29-.15-1.71-.85-1.98-.94-.27-.1-.46-.15-.66.14-.19.29-.75.94-.92 1.13-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.32-1.44-.86-.76-1.44-1.71-1.6-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.2.05-.36-.02-.51-.08-.15-.66-1.6-.91-2.19-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43 0 1.43 1.04 2.82 1.19 3.01.15.2 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.71-.7 1.95-1.37.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>
+      Escribir ahora
+    </a>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto" class="py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14">
+    <div>
+      <p class="text-ember-600 font-semibold tracking-wide uppercase text-sm mb-2">Contacto</p>
+      <h2 class="font-heading text-3xl sm:text-4xl font-800 text-brand-900">Hablemos</h2>
+      <p class="mt-4 text-brand-700 max-w-md">Consultanos por stock, precios mayoristas o cualquier duda sobre nuestros productos. Te respondemos a la brevedad.</p>
+
+      <div class="mt-10 space-y-6">
+        <div class="flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-600 text-brand-900">Dirección</p>
+            <p class="text-brand-700">Culpina 746, Flores, CABA (C1406)</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a2.25 2.25 0 00-2.297.586l-.787.788a11.25 11.25 0 01-5.958-5.958l.789-.787a2.25 2.25 0 00.586-2.297L6.963 3.63a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 5.25v1.5z"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-600 text-brand-900">Teléfono</p>
+            <p class="text-brand-700">4612-6365</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl bg-brand-50 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          </div>
+          <div>
+            <p class="font-heading font-600 text-brand-900">Email</p>
+            <p class="text-brand-700">info@maciahnos.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 flex gap-3">
+        <a href="#" class="w-11 h-11 rounded-full bg-brand-50 hover:bg-brand-500 hover:text-white text-brand-600 flex items-center justify-center transition-colors" aria-label="Facebook">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.16 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.78 8.44-4.94 8.44-9.94z"/></svg>
+        </a>
+        <a href="#" class="w-11 h-11 rounded-full bg-brand-50 hover:bg-brand-500 hover:text-white text-brand-600 flex items-center justify-center transition-colors" aria-label="Instagram">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.02-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07c-4.35.2-6.78 2.62-6.98 6.98C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 105.84 12 6.16 6.16 0 0012 5.84zM12 16a4 4 0 110-8 4 4 0 010 8zm6.41-10.85a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/></svg>
+        </a>
+        <a href="https://wa.me/5491127367121" target="_blank" rel="noopener" class="w-11 h-11 rounded-full bg-brand-50 hover:bg-brand-500 hover:text-white text-brand-600 flex items-center justify-center transition-colors" aria-label="WhatsApp">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.94 11.94 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.13 1.6 5.93L0 24l6.4-1.68a11.87 11.87 0 005.64 1.44h.01c6.54 0 11.85-5.3 11.85-11.85 0-3.17-1.24-6.14-3.38-8.43z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <form class="bg-brand-50/70 rounded-2xl p-8 space-y-5">
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-sm font-semibold text-brand-900 mb-1.5">Nombre</label>
+          <input type="text" placeholder="Tu nombre" class="w-full rounded-lg border border-brand-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-brand-900 mb-1.5">Comercio</label>
+          <input type="text" placeholder="Nombre de tu negocio" class="w-full rounded-lg border border-brand-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white">
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-brand-900 mb-1.5">Email</label>
+        <input type="email" placeholder="tuemail@ejemplo.com" class="w-full rounded-lg border border-brand-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white">
+      </div>
+      <div>
+        <label class="block text-sm font-semibold text-brand-900 mb-1.5">Mensaje</label>
+        <textarea rows="4" placeholder="Contanos qué productos necesitás" class="w-full rounded-lg border border-brand-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white"></textarea>
+      </div>
+      <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-semibold py-3.5 rounded-lg transition-colors">
+        Enviar consulta
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-brand-900 text-brand-200 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <svg width="36" height="36" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="21" cy="21" r="20" stroke="#7ab3ff" stroke-width="2"/>
+          <path d="M21 10 L28 26 L14 26 Z" stroke="#7ab3ff" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+          <circle cx="21" cy="19" r="2.4" fill="#f5a24d"/>
+        </svg>
+        <p class="font-heading font-800 text-white text-lg">MACIA HNOS.</p>
+      </div>
+      <p class="text-sm text-brand-300">Insumos para panadería, repostería, bazar y cocina desde 1960.</p>
+    </div>
+    <div>
+      <p class="font-heading font-700 text-white mb-4">Categorías</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#categorias" class="hover:text-white transition-colors">Materia Prima</a></li>
+        <li><a href="#categorias" class="hover:text-white transition-colors">Bazar / Cocina</a></li>
+        <li><a href="#categorias" class="hover:text-white transition-colors">Repostería</a></li>
+        <li><a href="#categorias" class="hover:text-white transition-colors">Condimentos</a></li>
+        <li><a href="#categorias" class="hover:text-white transition-colors">Moldes</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-heading font-700 text-white mb-4">Empresa</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#nosotros" class="hover:text-white transition-colors">Nosotros</a></li>
+        <li><a href="#catalogo" class="hover:text-white transition-colors">Productos</a></li>
+        <li><a href="#contacto" class="hover:text-white transition-colors">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="font-heading font-700 text-white mb-4">Contacto</p>
+      <ul class="space-y-2 text-sm">
+        <li>Culpina 746, Flores, CABA</li>
+        <li>Tel: 4612-6365</li>
+        <li>info@maciahnos.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-white/10 text-sm text-brand-300 flex flex-col sm:flex-row justify-between gap-2">
+    <p>&copy; 2026 Macia Hnos. y Cía. S.R.L. Todos los derechos reservados.</p>
+    <p>Propuesta de rediseño web</p>
+  </div>
+</footer>
+
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/5491127367121?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener"
+   class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center shadow-xl hover:scale-105 transition-transform">
+  <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.94 11.94 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.13 1.6 5.93L0 24l6.4-1.68a11.87 11.87 0 005.64 1.44h.01c6.54 0 11.85-5.3 11.85-11.85 0-3.17-1.24-6.14-3.38-8.43zM12.05 21.4h-.01a9.6 9.6 0 01-4.9-1.34l-.35-.21-3.63.95.97-3.55-.23-.36a9.58 9.58 0 01-1.47-5.1c0-5.3 4.32-9.62 9.63-9.62 2.57 0 4.98 1 6.8 2.82a9.56 9.56 0 012.82 6.8c0 5.31-4.32 9.61-9.63 9.61zm5.28-7.2c-.29-.15-1.71-.85-1.98-.94-.27-.1-.46-.15-.66.14-.19.29-.75.94-.92 1.13-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.32-1.44-.86-.76-1.44-1.71-1.6-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.2.05-.36-.02-.51-.08-.15-.66-1.6-.91-2.19-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43 0 1.43 1.04 2.82 1.19 3.01.15.2 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.71-.7 1.95-1.37.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>
+</a>
+
+<script>
+  document.getElementById('menuBtn').addEventListener('click', function () {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      document.getElementById('mobileMenu').classList.add('hidden');
+    });
+  });
+</script>
+
+<script>
+const CATALOG = {"categories":[{"slug":"materias-primas","label":"Materias Primas","count":33},{"slug":"bazar-cocina","label":"Bazar / Cocina","count":103},{"slug":"reposteria","label":"Repostería","count":187},{"slug":"condimentos","label":"Condimentos","count":5},{"slug":"moldes","label":"Moldes","count":61},{"slug":"parpen","label":"Productos Parpen","count":18}],"products":[{"id":23685,"n":"Delantal Macia","p":9622,"o":false,"s":true,"m":"images/img-23685.jpg","c":["bazar-cocina"],"f":0},{"id":23681,"n":"Espatula Factura","p":6075,"o":true,"s":true,"m":"images/img-23681.jpg","c":["bazar-cocina"],"f":0},{"id":23680,"n":"Espatula Hamburguesas","p":4692,"o":false,"s":true,"m":"images/img-23680.jpg","c":["bazar-cocina"],"f":0},{"id":23675,"n":"Espatula Porcionera","p":5796,"o":false,"s":true,"m":"images/img-23675.jpg","c":["bazar-cocina"],"f":0},{"id":23655,"n":"Premex De Bizcochuelo De Chocolate x10kg","p":55359.55,"o":false,"s":true,"m":"images/img-23655.jpg","c":["bazar-cocina","materias-primas","reposteria"],"f":1},{"id":23648,"n":"Premix Budin / Muffin Chocolate X 10Kg","p":49486.58,"o":false,"s":true,"m":"images/img-23648.jpg","c":["bazar-cocina","materias-primas","reposteria"],"f":1},{"id":23643,"n":"Nucleo Pan De Papa x10kg","p":46958.03,"o":false,"s":true,"m":"images/img-23643.jpg","c":["materias-primas","reposteria"],"f":1},{"id":23637,"n":"Madeleine (x9 x29x17cm )","p":2350.4,"o":false,"s":true,"m":"images/img-23637.webp","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23633,"n":"Bowl Repostero C/ Asas De 1.60 Ml","p":1530,"o":false,"s":true,"m":"images/img-23633.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23629,"n":"Rasquetas De Acero Inoxidable","p":3307.2,"o":false,"s":true,"m":"images/img-23629.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":23625,"n":"Jeringa Gastronomica ( Acero Inoxidable )","p":42200,"o":false,"s":true,"m":"images/img-23625.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":23620,"n":"Cortador De Masas De 5 Ruedas ( Acero Inoxidable )","p":30500,"o":false,"s":true,"m":"images/img-23620.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23615,"n":"Jarra Medidora 1.4 Lt ( Macia )","p":3474,"o":false,"s":true,"m":"images/img-23615.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23602,"n":"Molde De Silicona Mini Cupcake x15 ( De 4Cm X 2Cm )","p":5882.24,"o":false,"s":true,"m":"images/img-23602.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23596,"n":"Rasquetas De Acero 14Cm x10cm","p":2100,"o":false,"s":true,"m":"images/img-23596.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":23591,"n":"Nucleo Pan Lecteado x10hg","p":33390.67,"o":false,"s":true,"m":"images/img-23591.jpg","c":["bazar-cocina","materias-primas","reposteria"],"f":1},{"id":23584,"n":"Budinera De Aluminio X 500Gr","p":136.1,"o":false,"s":true,"m":"images/img-23584.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23544,"n":"Tamiz Mecanico Gatillo ( Acero Inoxidable )","p":7575.2,"o":false,"s":true,"m":"images/img-23544.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":23535,"n":"Espátula De Silicona ( Confetti Chispita)","p":0,"o":false,"s":true,"m":"images/img-23535.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":23517,"n":"Pirotines Plateados N10","p":16627,"o":false,"s":true,"m":"images/img-23517.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23514,"n":"Pirotines Dorados N10","p":16627,"o":false,"s":true,"m":"images/img-23514.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23506,"n":"Premix Mousse Tipo Chantilly x5kg","p":57696.17,"o":false,"s":true,"m":"images/img-23506.jpg","c":["bazar-cocina","materias-primas","reposteria"],"f":1},{"id":23502,"n":"Premix Merengue x5kg","p":47259.53,"o":false,"s":true,"m":"images/img-23502.jpg","c":["bazar-cocina","materias-primas","reposteria"],"f":1},{"id":23499,"n":"Nucleo Pan Dulce x10kg","p":67949.14,"o":false,"s":true,"m":"images/img-23499.jpg","c":["bazar-cocina","materias-primas","reposteria"],"f":1},{"id":23497,"n":"Nucleo Facturas Saladas x8kg","p":35701.66,"o":false,"s":true,"m":"images/img-23497.jpg","c":["bazar-cocina","materias-primas","reposteria"],"f":1},{"id":23471,"n":"Molde Para Tarteletas Ovalada","p":14010,"o":false,"s":true,"m":"images/img-23471.webp","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23458,"n":"Palitos Brochettes 30 Cm","p":680.4,"o":false,"s":true,"m":"images/img-23458.jpg","c":["reposteria"],"f":1},{"id":23320,"n":"Pirotines Blancos N10","p":20516,"o":false,"s":true,"m":"images/img-23320.jpg","c":["reposteria"],"f":1},{"id":23127,"n":"Savarin De Aluminio","p":3315,"o":true,"s":true,"m":"images/img-23127.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":23117,"n":"King Dust (x15)","p":7239,"o":true,"s":true,"m":"images/img-23117.png","c":["otros"],"f":0},{"id":23032,"n":"Premex Para Elabora Bizcochuelos x10kg","p":42138.75,"o":false,"s":true,"m":"images/img-23032.jpg","c":["materias-primas"],"f":1},{"id":23030,"n":"Nucleo Para Elaborar Facturas Dulces x10kg","p":32945.61,"o":false,"s":true,"m":"images/img-23030.jpg","c":["materias-primas"],"f":1},{"id":23029,"n":"Nucleo Para Elaborar Pan De Viena x10kg","p":36934.05,"o":false,"s":true,"m":"images/img-23029.jpg","c":["materias-primas"],"f":1},{"id":23028,"n":"Premix Pan Multisemillas x10kg","p":28714.84,"o":false,"s":true,"m":"images/img-23028.jpg","c":["materias-primas"],"f":1},{"id":23027,"n":"Nucleo Para Elaborar Masa Para Pizza x10kg","p":24048.26,"o":false,"s":true,"m":"images/img-23027.jpg","c":["materias-primas"],"f":1},{"id":23021,"n":"Premix Pan Multicereal x10kg","p":27504.61,"o":false,"s":true,"m":"images/img-23021.jpg","c":["materias-primas"],"f":1},{"id":22864,"n":"Molde De Silicona Letras (Copia)","p":0,"o":false,"s":true,"m":"images/img-22864.jpg","c":["reposteria"],"f":1},{"id":22634,"n":"Delantales Blanco Macia","p":8970,"o":false,"s":true,"m":"images/img-22634.jpg","c":["bazar-cocina"],"f":1},{"id":22624,"n":"Boquillas Rusas Parpen","p":6075,"o":false,"s":true,"m":"images/img-22624.jpg","c":["bazar-cocina","parpen","reposteria"],"f":1},{"id":22607,"n":"Placa Doble Parpen","p":4700.5,"o":false,"s":true,"m":"images/img-22607.jpg","c":["parpen","reposteria"],"f":1},{"id":22554,"n":"Nucleo Pan De Miga x10kg","p":35923.55,"o":false,"s":true,"m":"images/img-22554.jpg","c":["materias-primas"],"f":1},{"id":22551,"n":"Premezcla Para Elaborar Budin / Muffins x10kg","p":43892.13,"o":false,"s":true,"m":"images/img-22551.jpg","c":["materias-primas"],"f":1},{"id":22548,"n":"Premezcla Para Elaborar Pan De Queso x5kg","p":29888.46,"o":false,"s":true,"m":"images/img-22548.jpg","c":["materias-primas","reposteria"],"f":1},{"id":22545,"n":"Polvo Para Elaborar Crema Pastelera x5kg","p":29516.38,"o":false,"s":true,"m":"images/img-22545.jpg","c":["bazar-cocina","materias-primas"],"f":1},{"id":22375,"n":"Cuplas Grandes Plasticas","p":1000,"o":false,"s":true,"m":"images/img-22375.webp","c":["reposteria"],"f":0},{"id":21488,"n":"Set Tableta Corazon Parpen","p":4590,"o":false,"s":true,"m":"images/img-21488.jpg","c":["moldes","parpen","reposteria"],"f":1},{"id":21486,"n":"Cortador Para Pizza","p":6885,"o":false,"s":true,"m":"images/img-21486.jpg","c":["bazar-cocina"],"f":1},{"id":21484,"n":"Set De Pinceles X 6","p":1465,"o":false,"s":true,"m":"images/img-21484.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21478,"n":"Compas De Corte","p":10665,"o":false,"s":true,"m":"images/img-21478.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21475,"n":"Set x3 Espatulas","p":3518.1,"o":false,"s":true,"m":"images/img-21475.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21470,"n":"Set Para Realizar Copa Mundial Y Medallas Parpen","p":4551,"o":false,"s":true,"m":"images/img-21470.jpg","c":["moldes","parpen","reposteria"],"f":1},{"id":21443,"n":"Molde Para Raviolones","p":1100,"o":false,"s":true,"m":"images/img-21443.jpg","c":["bazar-cocina","moldes"],"f":1},{"id":21432,"n":"Pincel De Silicona","p":0,"o":false,"s":false,"m":"images/img-21432.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21429,"n":"Aerografo Manual","p":4550,"o":false,"s":true,"m":"images/img-21429.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21423,"n":"Molde Para Sorrentinos","p":2450,"o":false,"s":false,"m":"images/img-21423.jpg","c":["bazar-cocina","moldes"],"f":1},{"id":21417,"n":"Velas Feliz Cumpleaños","p":830,"o":false,"s":true,"m":"images/img-21417.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21407,"n":"Set Cortantes Estrellas &#8211; Flores &#8211; Corazones &#8211; Circulos","p":3900,"o":false,"s":true,"m":"images/img-21407.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21379,"n":"Balanza Digital","p":7870,"o":false,"s":true,"m":"images/img-21379.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21185,"n":"Set Para Bañar Bombones","p":1075.2,"o":false,"s":true,"m":"images/img-21185.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":21028,"n":"Aditivo Para Frescura / Pan Dulce / Pan Ingles / Pan Francés .","p":42032.69,"o":false,"s":true,"m":"images/img-21028.jpg","c":["materias-primas"],"f":1},{"id":21007,"n":"Churrera De Hoja Lata","p":3616,"o":false,"s":true,"m":"images/img-21007.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20994,"n":"Cuchillitos Plástico Para Corte","p":1825,"o":false,"s":true,"m":"images/img-20994.jpg","c":["reposteria"],"f":1},{"id":20963,"n":"Numerote Fluo x10 Uni","p":0,"o":false,"s":true,"m":"images/img-20963.jpg","c":["reposteria"],"f":1},{"id":20958,"n":"Numerote x10 Uni","p":3370,"o":false,"s":true,"m":"images/img-20958.jpg","c":["reposteria"],"f":0},{"id":20943,"n":"Set Especial Cake Sorpresa Parpen","p":14920,"o":false,"s":true,"m":"images/img-20943.jpg","c":["moldes","parpen","reposteria"],"f":1},{"id":20937,"n":"Set Big Candy Parpen","p":0,"o":false,"s":true,"m":"images/img-20937.jpg","c":["moldes","parpen","reposteria"],"f":1},{"id":20933,"n":"Set Tabletas Geometricas Parpen","p":4550,"o":false,"s":true,"m":"images/img-20933.jpg","c":["moldes","parpen","reposteria"],"f":1},{"id":20930,"n":"Set Tableta Corazon Parpen","p":4550,"o":false,"s":true,"m":"images/img-20930.jpg","c":["moldes","parpen","reposteria"],"f":1},{"id":20923,"n":"Molde Para Tartaletas 30 Cm X 19 Cm X 2 Cm","p":14010,"o":false,"s":true,"m":"images/img-20923.jpg","c":["moldes","reposteria"],"f":1},{"id":20920,"n":"Placa Microperforada 37 Cm X 27 Cm","p":13124,"o":false,"s":true,"m":"images/img-20920.jpg","c":["moldes","reposteria"],"f":1},{"id":20917,"n":"Placa Microperforada 32 Cm De Diametro","p":11316,"o":false,"s":true,"m":"images/img-20917.jpg","c":["moldes","reposteria"],"f":1},{"id":20914,"n":"Tartera Desmontable Con Base De Vidrio De 24 Cm X 3 Cm","p":19596,"o":false,"s":true,"m":"images/img-20914.jpg","c":["moldes","reposteria"],"f":1},{"id":20888,"n":"Set Vintage Cake Parpen","p":0,"o":false,"s":true,"m":"images/img-20888.jpg","c":["moldes","parpen","reposteria"],"f":0},{"id":20882,"n":"Espátula Para Helado Corta","p":2755,"o":false,"s":true,"m":"images/img-20882.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20872,"n":"Cuchara De Silicona Mango Made","p":2063.1,"o":false,"s":false,"m":"images/img-20872.jpg","c":["reposteria"],"f":1},{"id":20870,"n":"Rejillas 40 x26 Cm","p":5699,"o":false,"s":true,"m":"images/img-20870.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20865,"n":"Espátula De Silicona N28","p":2431,"o":true,"s":true,"m":"images/img-20865.jpg","c":["condimentos","reposteria"],"f":1},{"id":20850,"n":"Placa Para Bañar Oreo Parpen","p":2150,"o":false,"s":true,"m":"images/img-20850.jpg","c":["parpen","reposteria"],"f":0},{"id":20835,"n":"Espatula Repostera ( Punta Flexible ) Parpen","p":2883.3,"o":false,"s":true,"m":"images/img-20835.jpg","c":["parpen","reposteria"],"f":1},{"id":20815,"n":"Juegos Para Decorar Galletas","p":1276,"o":false,"s":true,"m":"images/img-20815.jpg","c":["reposteria"],"f":0},{"id":20812,"n":"Set De Juegos De Cortantes De Galletas","p":2700,"o":false,"s":true,"m":"images/img-20812.jpg","c":["reposteria"],"f":1},{"id":20809,"n":"Molde De Helado Silicona","p":5854,"o":false,"s":true,"m":"images/img-20809.jpg","c":["moldes","reposteria"],"f":0},{"id":20792,"n":"Cartucho De Gas Butano(foto Ilustrativa)","p":2550,"o":false,"s":true,"m":"images/img-20792.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20755,"n":"Cuchara Y Tenedor Wichi Con Inserto (Set Ensalada)","p":3609,"o":false,"s":true,"m":"images/img-20755.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20754,"n":"Cuchara Mapuche 50Cm","p":5796,"o":false,"s":true,"m":"images/img-20754.jpg","c":["bazar-cocina","condimentos","reposteria"],"f":0},{"id":20753,"n":"Cuchara Mapuche 40Cm","p":3540,"o":false,"s":true,"m":"images/img-20753.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20751,"n":"Cuchara Mapuche 30Cm","p":4200,"o":false,"s":true,"m":"images/img-20751.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20750,"n":"Cuchara Grande 45Cm","p":4389,"o":false,"s":true,"m":"images/img-20750.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20749,"n":"Cuchara Grande 40Cm","p":2594,"o":false,"s":true,"m":"images/img-20749.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20748,"n":"Cuchara Grande 35Cm","p":2394,"o":false,"s":true,"m":"images/img-20748.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20746,"n":"Cuchara Grande 30Cm","p":2194,"o":false,"s":true,"m":"images/img-20746.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20733,"n":"Vela Corazon Multicolor 13.50Cm","p":2060,"o":false,"s":true,"m":"images/img-20733.jpg","c":["condimentos","reposteria"],"f":0},{"id":20732,"n":"Vela Estrella Dorada 13.50Cm","p":2060,"o":false,"s":true,"m":"images/img-20732.jpg","c":["condimentos","reposteria"],"f":0},{"id":20731,"n":"Vela Globo Rosa 13.50Cm","p":2060,"o":false,"s":true,"m":"images/img-20731.jpg","c":["condimentos","reposteria"],"f":0},{"id":20730,"n":"Vela Globo Plateado 113.50Cm","p":2060,"o":false,"s":true,"m":"images/img-20730.jpg","c":["reposteria"],"f":1},{"id":20724,"n":"Velas Globo Dorado 13.50Cm","p":2060,"o":false,"s":true,"m":"images/img-20724.jpg","c":["reposteria"],"f":1},{"id":20644,"n":"Molde Budinera Para Microondas","p":2710,"o":false,"s":true,"m":"images/img-20644.jpg","c":["bazar-cocina","moldes","reposteria"],"f":1},{"id":20620,"n":"Tapa Universal Para Microondas","p":2760,"o":false,"s":true,"m":"images/img-20620.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20610,"n":"Choco Esferas Parpen","p":5600,"o":false,"s":true,"m":"images/img-20610.jpg","c":["parpen","reposteria"],"f":0},{"id":20605,"n":"Cintura Rectangular Regulable (Doña Clara)","p":0,"o":false,"s":true,"m":"images/img-20605.jpg","c":["moldes","reposteria"],"f":0},{"id":20596,"n":"Tortera Desmontable Con Gancho (Doña Clara )","p":0,"o":true,"s":true,"m":"images/img-20596.jpg","c":["moldes","reposteria"],"f":0},{"id":20587,"n":"Rejilla Corazones (Doña Clara)","p":0,"o":false,"s":true,"m":"images/img-20587.jpg","c":["reposteria"],"f":1},{"id":20568,"n":"Set De Tamiz x6 Vv /Ij","p":19600,"o":false,"s":true,"m":"images/img-20568.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20566,"n":"Espátula Recta Y Con Ángulo","p":0,"o":false,"s":true,"m":"images/img-20566.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20563,"n":"Espátula Rectas Y Con Ángulo","p":0,"o":false,"s":true,"m":"images/img-20563.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20493,"n":"Placas Abc Chocolate P522 Parpen","p":0,"o":false,"s":true,"m":"images/img-20493.jpg","c":["moldes","parpen"],"f":0},{"id":20490,"n":"Tabletas Chocolatines P431 Parpen","p":2100,"o":false,"s":true,"m":"images/img-20490.jpg","c":["moldes","parpen"],"f":0},{"id":20488,"n":"Toblerone P430 Parpen","p":2015.97,"o":false,"s":true,"m":"images/img-20488.jpg","c":["moldes","parpen"],"f":0},{"id":20458,"n":"Set De Cortantes Abc","p":4154.25,"o":false,"s":true,"m":"images/img-20458.jpg","c":["moldes"],"f":0},{"id":20449,"n":"Molde De Silicona Superhéroe","p":6500,"o":false,"s":true,"m":"images/img-20449.jpg","c":["moldes","reposteria"],"f":0},{"id":20448,"n":"Molde De Silicona Superhéroes","p":6500,"o":false,"s":true,"m":"images/img-20448.jpg","c":["moldes","reposteria"],"f":0},{"id":20444,"n":"Cuchara De Silicona","p":4391,"o":false,"s":true,"m":"images/img-20444.jpg","c":["reposteria"],"f":0},{"id":20441,"n":"Budinera De Silicona Con Flores (28X15cm)","p":7389,"o":false,"s":true,"m":"images/img-20441.jpg","c":["moldes","reposteria"],"f":1},{"id":20413,"n":"Molde De Silicona 23Cm X 7Cm","p":25260,"o":false,"s":true,"m":"images/img-20413.jpg","c":["bazar-cocina","moldes","reposteria"],"f":0},{"id":20405,"n":"Lamina Macarrons 30&#215;40 (Foto Ilustrativa)","p":6200,"o":false,"s":true,"m":"images/img-20405.jpg","c":["reposteria"],"f":1},{"id":20393,"n":"Batidor De Alambre Grande 34Cm","p":6075,"o":false,"s":true,"m":"images/img-20393.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20390,"n":"Batidor De Alambre Mediano 28Cm","p":4485,"o":false,"s":true,"m":"images/img-20390.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20387,"n":"Batidor De Alambre Chico 23Cm","p":3858,"o":false,"s":true,"m":"images/img-20387.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":20383,"n":"Placas Para Macarons De 48 Capacidades","p":6428,"o":false,"s":true,"m":"images/img-20383.jpg","c":["moldes","reposteria"],"f":1},{"id":20380,"n":"Molde Pirámides","p":7614,"o":false,"s":true,"m":"images/img-20380.jpg","c":["moldes","reposteria"],"f":0},{"id":20329,"n":"Cortante Santa Claus De Acero","p":4868,"o":false,"s":true,"m":"images/img-20329.jpg","c":["reposteria"],"f":0},{"id":20325,"n":"Moldes 2 Placas Para Realizar Corazones Diamante Parpen","p":4701,"o":false,"s":true,"m":"images/img-20325.jpg","c":["moldes","parpen","reposteria"],"f":0},{"id":20313,"n":"Cortantes Jengibre Mediano","p":2484,"o":false,"s":true,"m":"images/img-20313.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20311,"n":"Cortantes Campana Navideña Grande","p":2484,"o":false,"s":true,"m":"images/img-20311.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20309,"n":"Cortantes Pino Navideño","p":2558.6,"o":false,"s":true,"m":"images/img-20309.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20307,"n":"Cortantes Bastón Navideño","p":2484,"o":false,"s":true,"m":"images/img-20307.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20305,"n":"Cortantes Muñeco De Nieve Grande","p":2484,"o":false,"s":true,"m":"images/img-20305.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20303,"n":"Cortantes Reno","p":2636,"o":false,"s":true,"m":"images/img-20303.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20301,"n":"Cortantes Futbol x4","p":2850,"o":false,"s":true,"m":"images/img-20301.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20299,"n":"Cortantes Set Musical x6","p":2855,"o":false,"s":true,"m":"images/img-20299.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20297,"n":"Cortantes Set Herramientas x6","p":2855,"o":false,"s":true,"m":"images/img-20297.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20295,"n":"Cortantes Notas Musicales x4","p":3010,"o":false,"s":true,"m":"images/img-20295.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":20288,"n":"Bandeja Giraparpen Plus","p":23053.27,"o":false,"s":true,"m":"images/img-20288.jpg","c":["moldes","parpen","reposteria"],"f":1},{"id":20249,"n":"Cuadrado Desmontable Con Base De Vidrio (26.5Cm X 25.1Cm X 5.","p":23598,"o":false,"s":true,"m":"images/img-20249.png","c":["bazar-cocina","moldes","reposteria"],"f":0},{"id":20246,"n":"Budinera Desmontable Con Base De Vidrio (27Cm X 13.3Cm X 6.4Cm","p":22080,"o":false,"s":true,"m":"images/img-20246.png","c":["bazar-cocina","moldes","reposteria"],"f":0},{"id":20176,"n":"Lamina De Silicona","p":5012,"o":false,"s":true,"m":"images/img-20176.jpg","c":["reposteria"],"f":0},{"id":20112,"n":"Cortador De Costura x3","p":1320,"o":false,"s":true,"m":"images/img-20112.jpg","c":["reposteria"],"f":0},{"id":20110,"n":"Marcador De Costura x6","p":0,"o":false,"s":true,"m":"images/img-20110.jpg","c":["reposteria"],"f":0},{"id":20096,"n":"Molde Daisy","p":7376,"o":false,"s":true,"m":"images/img-20096.jpg","c":["reposteria"],"f":1},{"id":19969,"n":"Molde Chupetines ( Cuatro Modelos )","p":3572,"o":false,"s":true,"m":"images/img-19969.jpg","c":["moldes","reposteria"],"f":0},{"id":19965,"n":"Pirotines Diseño N10 (Foto Modelo)","p":29566,"o":false,"s":true,"m":"images/img-19965.jpg","c":["reposteria"],"f":0},{"id":19898,"n":"Tenedores Para Fondue x6uni","p":7480,"o":false,"s":true,"m":"images/img-19898.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":19881,"n":"Termómetro Para Horno","p":4252,"o":false,"s":true,"m":"images/img-19881.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":19874,"n":"Esencia De Vainilla Por 100Cc","p":1108.84,"o":false,"s":true,"m":"images/img-19874.jpg","c":["materias-primas","reposteria"],"f":0},{"id":19872,"n":"Colorante Amarillo 100Cc","p":1393.97,"o":false,"s":true,"m":"images/img-19872.jpg","c":["materias-primas","reposteria"],"f":0},{"id":19866,"n":"Esencia De Aroma M Por 100Cc","p":1290.26,"o":false,"s":true,"m":"images/img-19866.jpg","c":["materias-primas","reposteria"],"f":0},{"id":19861,"n":"Esencia De Limón Por 100Cc","p":1263.45,"o":false,"s":true,"m":"images/img-19861.jpg","c":["materias-primas","reposteria"],"f":0},{"id":19816,"n":"Laminas Tipo Silpat 30X40cm","p":4876,"o":false,"s":true,"m":"images/img-19816.jpg","c":["parpen","reposteria"],"f":0},{"id":19782,"n":"Molde De Silicona","p":0,"o":false,"s":false,"m":"images/img-19782.jpg","c":["reposteria"],"f":1},{"id":19663,"n":"Molde De Silicona Letras","p":0,"o":false,"s":true,"m":"images/img-19663.jpg","c":["reposteria"],"f":1},{"id":19649,"n":"Lamina Wonder Bake","p":16560,"o":false,"s":true,"m":"images/img-19649.png","c":["reposteria"],"f":0},{"id":19495,"n":"Picos Panaderos/reposteros","p":1680,"o":true,"s":true,"m":"images/img-19495.png","c":["reposteria"],"f":1},{"id":19437,"n":"Placa De Silicona Antiadherente","p":6635,"o":false,"s":true,"m":"images/img-19437.png","c":["reposteria"],"f":0},{"id":19400,"n":"Minipicos","p":1100,"o":true,"s":true,"m":"images/img-19400.png","c":["reposteria"],"f":0},{"id":19204,"n":"Molde Para Cake Pops Forma Corazon","p":6610,"o":false,"s":true,"m":"images/img-19204.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":19131,"n":"Molde Nordico Flor Silicona / Tamaño 27X 10.5 Cm","p":9950,"o":false,"s":true,"m":"images/img-19131.png","c":["bazar-cocina","reposteria"],"f":0},{"id":19129,"n":"Molde Nordico Corazon De Silicona / Tamaño 30 X 27.2 X 9Cm","p":9950,"o":false,"s":true,"m":"images/img-19129.png","c":["bazar-cocina","moldes","reposteria"],"f":0},{"id":19119,"n":"Molde De Silicona Espiral Nordico / Tamaño 23.7 X 8.7 Cm","p":9950,"o":false,"s":true,"m":"images/img-19119.png","c":["bazar-cocina","reposteria"],"f":0},{"id":19048,"n":"Bowls Con Asa N*25","p":21000,"o":false,"s":true,"m":"images/img-19048.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":19045,"n":"Bowls Con Asa N*21","p":18300,"o":false,"s":true,"m":"images/img-19045.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":19041,"n":"Bowls Con Asa N* 17","p":16100,"o":false,"s":true,"m":"images/img-19041.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":19030,"n":"Flanera Antiadherente","p":6175,"o":false,"s":true,"m":"images/img-19030.jpg","c":["bazar-cocina","moldes","reposteria"],"f":0},{"id":19023,"n":"Guantes De Kevlar (Expresado En Dolares)","p":24.84,"o":false,"s":true,"m":"images/img-19023.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":19001,"n":"Soplete","p":4600,"o":false,"s":true,"m":"images/img-19001.jpg","c":["reposteria"],"f":1},{"id":18904,"n":"Molde Chupetin","p":3233,"o":false,"s":true,"m":"images/img-18904.jpg","c":["moldes"],"f":0},{"id":18902,"n":"Molde Para Helado Silicona","p":0,"o":false,"s":true,"m":"images/img-18902.jpg","c":["moldes"],"f":0},{"id":18898,"n":"Numeros Grandes","p":2771,"o":false,"s":true,"m":"images/img-18898.jpg","c":["moldes"],"f":0},{"id":18892,"n":"Molde Flor Paleta","p":5710,"o":false,"s":true,"m":"images/img-18892.jpg","c":["moldes"],"f":0},{"id":18885,"n":"Budineras Inglesas De Silicona","p":4912,"o":false,"s":true,"m":"images/img-18885.jpg","c":["moldes"],"f":0},{"id":18879,"n":"Manteles Y Caminos 1.20-1.80","p":1995,"o":false,"s":true,"m":"images/img-18879.jpg","c":["bazar-cocina"],"f":0},{"id":18877,"n":"Coladores","p":0,"o":false,"s":false,"m":"images/img-18877.jpg","c":["bazar-cocina"],"f":0},{"id":18704,"n":"Moldes Donuts","p":4489,"o":false,"s":true,"m":"images/img-18704.jpg","c":["moldes"],"f":0},{"id":18702,"n":"Placas P/chocolatines","p":1967.06,"o":false,"s":true,"m":"images/img-18702.jpg","c":["reposteria"],"f":1},{"id":18700,"n":"Placas P/bombones Chicos36","p":1519,"o":false,"s":true,"m":"images/img-18700.jpg","c":["reposteria"],"f":0},{"id":18697,"n":"Placas Silicona Muffins","p":4005,"o":true,"s":true,"m":"images/img-18697.jpg","c":["moldes"],"f":0},{"id":18682,"n":"Bandejas De Carton Grises Redondas","p":3105,"o":true,"s":true,"m":"images/img-18682.jpg","c":["reposteria"],"f":0},{"id":18674,"n":"Bandejas De Carton Grises Rectangulares (Precio x100u)","p":2101.05,"o":true,"s":true,"m":"images/img-18674.jpg","c":["reposteria"],"f":0},{"id":18646,"n":"Platos Dorados Y Plateados Redondos","p":265.5,"o":true,"s":true,"m":"images/img-18646.jpg","c":["reposteria"],"f":1},{"id":18638,"n":"Platos Dorados Y Plateados Rectangulares","p":149.04,"o":true,"s":true,"m":"images/img-18638.jpg","c":["reposteria"],"f":0},{"id":18630,"n":"Platos De Pvc Rigidos Reutilizables","p":3726,"o":true,"s":true,"m":"images/img-18630.jpg","c":["reposteria"],"f":0},{"id":18621,"n":"Lamina De Acetato","p":0,"o":true,"s":true,"m":"images/img-18621.jpg","c":["reposteria"],"f":0},{"id":18600,"n":"Polvo Neon","p":0,"o":false,"s":true,"m":"images/img-18600.jpg","c":["reposteria"],"f":0},{"id":18599,"n":"Glitters","p":3143,"o":false,"s":true,"m":"images/img-18599.jpg","c":["reposteria"],"f":0},{"id":18594,"n":"Polvo Liposoluble Nacional","p":1392,"o":true,"s":true,"m":"images/img-18594.jpg","c":["reposteria"],"f":0},{"id":18590,"n":"Polvos Dorado / Plateado / Perlado","p":3143,"o":true,"s":true,"m":"images/img-18590.jpg","c":["reposteria"],"f":0},{"id":18579,"n":"Alisador Color Rosa-cel","p":1686,"o":false,"s":true,"m":"images/img-18579.jpg","c":["reposteria"],"f":0},{"id":18577,"n":"Fratacho Codigo 93-28 C/manijita","p":1582,"o":false,"s":true,"m":"images/img-18577.jpg","c":["reposteria"],"f":0},{"id":18575,"n":"Molde Cola Sirena x2","p":2426,"o":false,"s":true,"m":"images/img-18575.jpg","c":["moldes"],"f":0},{"id":18569,"n":"Moldes De Policarbonato","p":0,"o":false,"s":true,"m":"images/img-18569.jpg","c":["moldes"],"f":0},{"id":18565,"n":"Moldes Capitone Celeste","p":3290,"o":false,"s":true,"m":"images/img-18565.jpg","c":["moldes"],"f":0},{"id":18562,"n":"Cortantes Animales Marinos","p":1505,"o":false,"s":true,"m":"images/img-18562.jpg","c":["reposteria"],"f":0},{"id":18561,"n":"Cortantes Animalitos x6","p":1505,"o":false,"s":true,"m":"images/img-18561.jpg","c":["reposteria"],"f":0},{"id":18560,"n":"Cortante Flamenco x2","p":1877,"o":false,"s":true,"m":"images/img-18560.jpg","c":["reposteria"],"f":0},{"id":18555,"n":"Cortante Pirata x7","p":4680,"o":false,"s":true,"m":"images/img-18555.jpg","c":["reposteria"],"f":0},{"id":18547,"n":"Clavos P/armar Flores","p":0,"o":false,"s":false,"m":"images/img-18547.jpg","c":["reposteria"],"f":0},{"id":18546,"n":"Sellos Abc","p":1654,"o":false,"s":true,"m":"images/img-18546.jpg","c":["reposteria"],"f":0},{"id":18544,"n":"Molde Capitone","p":2663,"o":false,"s":true,"m":"images/img-18544.jpg","c":["moldes","reposteria"],"f":0},{"id":18541,"n":"Cortantes Abecedario Minusculas","p":5629,"o":false,"s":true,"m":"images/img-18541.jpg","c":["reposteria"],"f":0},{"id":18540,"n":"Cortantes Abecedario","p":4100,"o":false,"s":true,"m":"images/img-18540.jpg","c":["reposteria"],"f":0},{"id":18538,"n":"Cortantes Numeros Plastico 6Cm","p":4302.4,"o":false,"s":true,"m":"images/img-18538.jpg","c":["reposteria"],"f":0},{"id":18537,"n":"Set Cortantes Numeros","p":5120,"o":false,"s":true,"m":"images/img-18537.jpg","c":["reposteria"],"f":0},{"id":18523,"n":"Cortantes Metal Princesa Bosque (3 Piezas)","p":4682,"o":false,"s":true,"m":"images/img-18523.jpg","c":["reposteria"],"f":0},{"id":18520,"n":"Set Cortantes Acero","p":3740,"o":true,"s":true,"m":"images/img-18520.jpg","c":["reposteria"],"f":0},{"id":18516,"n":"Moldes x3 Tortas","p":5845,"o":false,"s":true,"m":"images/img-18516.jpg","c":["moldes"],"f":1},{"id":18512,"n":"Budineras Teflon","p":4067.55,"o":true,"s":true,"m":"images/img-18512.jpg","c":["moldes"],"f":1},{"id":18506,"n":"Placas De Muffin","p":3343,"o":true,"s":true,"m":"images/img-18506.jpg","c":["reposteria"],"f":1},{"id":18490,"n":"Palitos Brochettes x100 &#8211; 20 Cm","p":495,"o":false,"s":true,"m":"images/img-18490.jpg","c":["reposteria"],"f":0},{"id":18489,"n":"Palitos De Madera P/helados x50 Uni","p":708,"o":false,"s":true,"m":"images/img-18489.jpg","c":["bazar-cocina"],"f":0},{"id":18458,"n":"Ralladores","p":818,"o":true,"s":true,"m":"images/img-18458.jpg","c":["bazar-cocina"],"f":1},{"id":18448,"n":"Posatorta Giratorio Plastico","p":10823,"o":false,"s":true,"m":"images/img-18448.png","c":["reposteria"],"f":0},{"id":18440,"n":"Pinceles","p":0,"o":true,"s":true,"m":"images/img-18440.jpg","c":["reposteria"],"f":0},{"id":18426,"n":"Cucharas","p":0,"o":true,"s":true,"m":null,"c":["bazar-cocina"],"f":0},{"id":18419,"n":"Pinzas","p":0,"o":true,"s":true,"m":"images/img-18419.jpg","c":["bazar-cocina"],"f":0},{"id":18396,"n":"Set De Bolillos x4","p":0,"o":false,"s":true,"m":"images/img-18396.jpg","c":["reposteria"],"f":0},{"id":18384,"n":"Termometro Digital","p":3021,"o":true,"s":true,"m":"images/img-18384.jpg","c":["bazar-cocina","reposteria"],"f":1},{"id":18383,"n":"Espatula Y Corta Torta","p":676.15,"o":false,"s":true,"m":"images/img-18383.jpg","c":["reposteria"],"f":0},{"id":18376,"n":"Cuchillo Sandwichero 35Cm","p":0,"o":false,"s":true,"m":"images/img-18376.jpg","c":["bazar-cocina"],"f":0},{"id":18374,"n":"Cuchillos Plásticos Para Corte De Pan","p":1442,"o":false,"s":true,"m":"images/img-18374.jpg","c":["bazar-cocina"],"f":0},{"id":18368,"n":"Tablas De Corte","p":0,"o":true,"s":true,"m":"images/img-18368.jpg","c":["bazar-cocina","reposteria"],"f":0},{"id":18363,"n":"Picas Rodillo Giratorias De Madera","p":34500,"o":true,"s":true,"m":"images/img-18363.jpg","c":["bazar-cocina"],"f":0},{"id":18361,"n":"Rodillo Cortador Para Frola","p":0,"o":false,"s":true,"m":"images/img-18361.jpg","c":["bazar-cocina"],"f":0},{"id":18343,"n":"Palos Texturados","p":0,"o":false,"s":true,"m":"images/img-18343.jpg","c":["bazar-cocina"],"f":0},{"id":18338,"n":"Rasquetas Plasticas","p":440,"o":false,"s":true,"m":"images/img-18338.jpg","c":["reposteria"],"f":0},{"id":18331,"n":"Acoples Para Mangas Tricolor","p":870,"o":false,"s":true,"m":"images/img-18331.jpg","c":["reposteria"],"f":0},{"id":18330,"n":"Picos Churreros","p":3036,"o":false,"s":true,"m":"images/img-18330.jpg","c":["reposteria"],"f":0},{"id":18325,"n":"Picos Rusos (Nacional)","p":3860,"o":false,"s":true,"m":"images/img-18325.jpg","c":["reposteria"],"f":0},{"id":18320,"n":"Cuplas Chicas Plasticas","p":828,"o":false,"s":true,"m":"images/img-18320.jpg","c":["reposteria"],"f":0},{"id":18315,"n":"Delantal Pechera Gabardina Blanca","p":6490,"o":false,"s":true,"m":"images/img-18315.jpg","c":["bazar-cocina"],"f":0},{"id":18314,"n":"Delantal Rayados Varios Diseños","p":6885,"o":false,"s":true,"m":"images/img-18314.jpg","c":["bazar-cocina"],"f":0},{"id":18313,"n":"Delantal Pechera Tela Brin De Color Sin Bolsillo","p":6620,"o":false,"s":true,"m":"images/img-18313.jpg","c":["bazar-cocina"],"f":0},{"id":18301,"n":"Mangas De Tela","p":984.8,"o":true,"s":true,"m":"images/img-18301.jpg","c":["reposteria"],"f":0},{"id":18293,"n":"Mangas Plasticas","p":859,"o":true,"s":true,"m":"images/img-18293.jpg","c":["reposteria"],"f":0},{"id":18284,"n":"Mangas Descartables En Rollos","p":4858,"o":true,"s":true,"m":"images/img-18284.jpg","c":["bazar-cocina"],"f":0},{"id":18278,"n":"Manga Plastica Con Acople","p":1709,"o":true,"s":true,"m":"images/img-18278.jpg","c":["reposteria"],"f":0},{"id":18270,"n":"Mangas Descartables","p":73.5,"o":true,"s":true,"m":"images/img-18270.png","c":["bazar-cocina","reposteria"],"f":0},{"id":18261,"n":"Molde Para Rosca x100u","p":220.8,"o":true,"s":true,"m":"images/img-18261.jpg","c":["moldes"],"f":0},{"id":18254,"n":"Molde Para Bizcochuelo x200u","p":165.6,"o":true,"s":true,"m":"images/img-18254.jpg","c":["moldes"],"f":0},{"id":18251,"n":"Molde Budin Papel 250U","p":143.6,"o":true,"s":true,"m":"images/img-18251.jpg","c":["moldes"],"f":0},{"id":18241,"n":"Molde Pan Dulce x1000u","p":88.4,"o":true,"s":true,"m":"images/img-18241.jpg","c":["moldes"],"f":0},{"id":18236,"n":"Plato Dorado","p":0,"o":true,"s":true,"m":null,"c":["reposteria"],"f":0},{"id":18225,"n":"Pirotin Para Masa Sin Diseño x1000u","p":0,"o":true,"s":true,"m":"images/img-18225.jpg","c":["reposteria"],"f":0},{"id":18202,"n":"Esencia De Vainilla","p":1894.05,"o":true,"s":true,"m":"images/img-18202.jpg","c":["materias-primas"],"f":0},{"id":18135,"n":"Esencia De Limon","p":4171.82,"o":true,"s":true,"m":"images/img-18135.jpg","c":["materias-primas"],"f":0},{"id":18131,"n":"Esencia De Aroma M","p":3273.34,"o":true,"s":true,"m":"images/img-18131.jpg","c":["materias-primas"],"f":0},{"id":18124,"n":"Colorante Amarillo","p":1814.24,"o":true,"s":true,"m":"images/img-18124.jpg","c":["materias-primas"],"f":0},{"id":18121,"n":"Polvo Para Hornear Pote","p":2331.26,"o":true,"s":true,"m":"images/img-18121.jpg","c":["materias-primas"],"f":0},{"id":18116,"n":"Polvo Para Hornear Bolsa","p":8757.15,"o":true,"s":true,"m":"images/img-18116.jpg","c":["materias-primas"],"f":0},{"id":18115,"n":"Propionato De Calcio (Precio Dolar)","p":3.6,"o":false,"s":true,"m":"images/img-18115.jpg","c":["materias-primas"],"f":0},{"id":18114,"n":"Semita Diastática","p":4175.08,"o":false,"s":true,"m":"images/img-18114.jpg","c":["materias-primas"],"f":0},{"id":18110,"n":"Aditivo Concentrado Para Panificacion","p":11105.77,"o":true,"s":true,"m":"images/img-18110.jpg","c":["materias-primas"],"f":0},{"id":18106,"n":"Aditivo Para Panificacion","p":6665.64,"o":true,"s":true,"m":"images/img-18106.jpg","c":["materias-primas"],"f":0}]};
+</script>
+<script>
+(function () {
+  var WHATSAPP_NUMBER = '5491127367121';
+  var PAGE_SIZE = 24;
+  var CAT_LABELS = { todos: 'Todos' };
+  CATALOG.categories.forEach(function (c) { CAT_LABELS[c.slug] = c.label; });
+
+  var state = { cat: 'todos', q: '', visible: PAGE_SIZE };
+
+  function money(n) {
+    try {
+      return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(n);
+    } catch (e) {
+      return '$' + Math.round(n);
+    }
+  }
+
+  function waLink(name) {
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hola, quiero consultar por: ' + name);
+  }
+
+  function normalize(str) {
+    return String(str).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function countFor(slug) {
+    if (slug === 'todos') return CATALOG.products.length;
+    var found = CATALOG.categories.filter(function (c) { return c.slug === slug; })[0];
+    return found ? found.count : 0;
+  }
+
+  function filteredProducts() {
+    var q = normalize(state.q.trim());
+    return CATALOG.products.filter(function (p) {
+      if (state.cat !== 'todos' && p.c.indexOf(state.cat) === -1) return false;
+      if (q && normalize(p.n).indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+
+  var PLACEHOLDER_ICON =
+    '<div class="w-full h-full flex items-center justify-center">' +
+    '<svg class="w-12 h-12 text-brand-200" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">' +
+    '<rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.4" fill="currentColor" stroke="none"/>' +
+    '<path d="M4 16l4.5-4.5a1.5 1.5 0 012.12 0L15 15.9M14 14.5l1.5-1.5a1.5 1.5 0 012.12 0L20 15.5"/></svg></div>';
+
+  function productCard(p) {
+    var safeName = escapeHtml(p.n);
+    var imgHtml = p.m
+      ? '<img src="' + p.m + '" alt="' + safeName + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">'
+      : PLACEHOLDER_ICON;
+
+    var priceHtml = p.p > 0
+      ? '<p class="text-brand-900 font-heading font-700">' + money(p.p) + '</p>'
+      : '<p class="text-brand-400 text-sm font-medium">Consultar precio</p>';
+
+    var badges = '';
+    if (!p.s) badges += '<span class="bg-red-500 text-white text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">Sin stock</span>';
+    if (p.o) badges += '<span class="bg-brand-900/80 text-white text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">Variantes</span>';
+
+    return (
+      '<div class="group bg-white rounded-2xl border border-brand-100 overflow-hidden hover:shadow-lg transition-shadow flex flex-col">' +
+      '<div class="aspect-square overflow-hidden bg-brand-50 relative">' + imgHtml +
+      (badges ? '<div class="absolute top-2 left-2 flex flex-col gap-1 items-start">' + badges + '</div>' : '') +
+      '</div>' +
+      '<div class="p-4 flex flex-col flex-1">' +
+      '<p class="font-heading font-600 text-brand-900 text-sm leading-snug min-h-[2.5em]">' + safeName + '</p>' +
+      priceHtml +
+      '<a href="' + waLink(p.n) + '" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-1.5 text-ember-600 text-sm font-semibold hover:text-ember-700">' +
+      'Consultar <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>' +
+      '</a>' +
+      '</div>' +
+      '</div>'
+    );
+  }
+
+  function renderTileCounts() {
+    document.querySelectorAll('.cat-tile').forEach(function (btn) {
+      var slug = btn.dataset.cat;
+      var countEl = btn.querySelector('.cat-count');
+      if (countEl) countEl.textContent = countFor(slug) + ' prod.';
+      var isActive = state.cat === slug;
+      btn.classList.toggle('border-ember-500', isActive);
+      btn.classList.toggle('ring-2', isActive);
+      btn.classList.toggle('ring-ember-200', isActive);
+    });
+  }
+
+  function renderGrid() {
+    var list = filteredProducts();
+    var slice = list.slice(0, state.visible);
+    var grid = document.getElementById('productGrid');
+    var noRes = document.getElementById('noResults');
+    var loadMoreBtn = document.getElementById('loadMoreBtn');
+    var resultsCount = document.getElementById('resultsCount');
+    var activeCatLabel = document.getElementById('activeCatLabel');
+    var resetBtn = document.getElementById('resetFilters');
+
+    grid.innerHTML = slice.map(productCard).join('');
+    var hasResults = list.length > 0;
+    noRes.classList.toggle('hidden', hasResults);
+    grid.classList.toggle('hidden', !hasResults);
+    loadMoreBtn.classList.toggle('hidden', state.visible >= list.length);
+    resultsCount.textContent = hasResults ? ('Mostrando ' + slice.length + ' de ' + list.length + ' productos') : '';
+    activeCatLabel.textContent = state.cat !== 'todos' ? CAT_LABELS[state.cat] : '';
+    resetBtn.classList.toggle('hidden', state.cat === 'todos' && !state.q);
+  }
+
+  function renderAll() {
+    renderTileCounts();
+    renderGrid();
+  }
+
+  document.querySelectorAll('.cat-tile').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.cat = btn.dataset.cat;
+      state.visible = PAGE_SIZE;
+      renderAll();
+      document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  document.getElementById('loadMoreBtn').addEventListener('click', function () {
+    state.visible += PAGE_SIZE;
+    renderGrid();
+  });
+
+  document.getElementById('resetFilters').addEventListener('click', function () {
+    state.cat = 'todos';
+    state.q = '';
+    state.visible = PAGE_SIZE;
+    document.getElementById('searchInput').value = '';
+    renderAll();
+  });
+
+  var searchTimer;
+  document.getElementById('searchInput').addEventListener('input', function (e) {
+    clearTimeout(searchTimer);
+    var val = e.target.value;
+    searchTimer = setTimeout(function () {
+      state.q = val;
+      state.visible = PAGE_SIZE;
+      renderAll();
+    }, 180);
+  });
+
+  renderAll();
+})();
+</script>
+
+</body>
+</html>
