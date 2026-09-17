@@ -170,7 +170,7 @@
 
     <div class="relative hidden lg:block">
       <div class="relative rounded-[2rem] overflow-hidden ring-1 ring-white/15 shadow-2xl">
-        <img src="images/img-23685.jpg" alt="Delantal e insumos Macia Hnos" class="w-full h-full object-cover">
+        <img src="images/img-23685-0.jpg" alt="Delantal e insumos Macia Hnos" class="w-full h-full object-cover">
       </div>
       <div class="absolute -bottom-8 -left-10 bg-white rounded-2xl shadow-xl p-5 w-64">
         <div class="flex items-center gap-3">
@@ -342,7 +342,7 @@
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
     <div class="relative">
       <div class="rounded-[2rem] overflow-hidden ring-1 ring-white/10 shadow-2xl">
-        <img src="images/img-23655.jpg" alt="Productos Macia Hnos desde 1960" class="w-full h-full object-cover">
+        <img src="images/img-23655-0.jpg" alt="Productos Macia Hnos desde 1960" class="w-full h-full object-cover">
       </div>
       <div class="absolute -bottom-6 -right-6 bg-ember-500 text-white rounded-2xl px-6 py-4 shadow-xl">
         <p class="font-heading font-800 text-3xl">1960</p>
@@ -607,16 +607,28 @@
     '<rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.4" fill="currentColor" stroke="none"/>' +
     '<path d="M4 16l4.5-4.5a1.5 1.5 0 012.12 0L15 15.9M14 14.5l1.5-1.5a1.5 1.5 0 012.12 0L20 15.5"/></svg></div>';
 
+  function minVariantPrice(p) {
+    if (!p.variants || !p.variants.options || !p.variants.options.length) return null;
+    var prices = p.variants.options.map(function (o) { return o.price; }).filter(function (n) { return n > 0; });
+    return prices.length ? Math.min.apply(null, prices) : null;
+  }
+
   function productCard(p) {
     var safeName = escapeHtml(p.n);
     var href = 'producto.html?id=' + p.id;
     var imgHtml = p.m
-      ? '<img src="' + p.m + '" alt="' + safeName + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">'
+      ? '<img src="' + p.m + '" alt="' + safeName + '" loading="lazy" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300">'
       : PLACEHOLDER_ICON;
 
-    var priceHtml = p.p > 0
-      ? '<p class="text-brand-900 font-heading font-700">' + money(p.p) + '</p>'
-      : '<p class="text-brand-400 text-sm font-medium">Consultar precio</p>';
+    var minVariant = minVariantPrice(p);
+    var priceHtml;
+    if (minVariant) {
+      priceHtml = '<p class="text-brand-900 font-heading font-700">Desde ' + money(minVariant) + '</p>';
+    } else if (p.p > 0) {
+      priceHtml = '<p class="text-brand-900 font-heading font-700">' + money(p.p) + '</p>';
+    } else {
+      priceHtml = '<p class="text-brand-400 text-sm font-medium">Consultar precio</p>';
+    }
 
     var badges = '';
     if (!p.s) badges += '<span class="bg-red-500 text-white text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-full">Sin stock</span>';

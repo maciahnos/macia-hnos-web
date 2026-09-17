@@ -95,6 +95,7 @@
               <th class="text-left px-4 py-3 font-semibold">Precio (ARS)</th>
               <th class="text-left px-4 py-3 font-semibold">Stock</th>
               <th class="text-left px-4 py-3 font-semibold min-w-[240px]">Categorías</th>
+              <th class="text-left px-4 py-3 font-semibold">Fotos/Variantes</th>
               <th class="text-left px-4 py-3 font-semibold"></th>
             </tr>
           </thead>
@@ -146,6 +147,51 @@
       <div class="flex gap-3 mt-6">
         <button id="cancelAddBtn" class="flex-1 border-2 border-brand-200 text-brand-700 font-semibold py-2.5 rounded-full">Cancelar</button>
         <button id="confirmAddBtn" class="flex-1 bg-brand-500 hover:bg-brand-600 text-white font-semibold py-2.5 rounded-full transition-colors">Publicar producto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit photos & variants modal -->
+<div id="mediaModal" class="hidden fixed inset-0 z-50 bg-brand-900/50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="font-heading text-lg font-800 text-brand-900">Fotos y variantes</h2>
+        <button id="closeMediaModalBtn" class="text-brand-400 hover:text-brand-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <p id="mediaProductName" class="text-sm text-brand-500 mb-5"></p>
+
+      <h3 class="font-semibold text-brand-900 mb-2">Fotos del producto</h3>
+      <div id="mediaImagesGrid" class="grid grid-cols-4 sm:grid-cols-5 gap-3 mb-3"></div>
+      <div class="flex items-center gap-3 mb-6">
+        <input id="mediaAddImageInput" type="file" accept="image/*" class="text-sm">
+        <span id="mediaImageStatus" class="text-xs text-brand-400"></span>
+      </div>
+
+      <div class="border-t border-brand-100 pt-5">
+        <label class="flex items-center gap-2 mb-4">
+          <input id="mediaHasVariants" type="checkbox" class="w-4 h-4">
+          <span class="font-semibold text-brand-900">Este producto tiene variantes (talles, colores, sabores, etc.)</span>
+        </label>
+
+        <div id="mediaVariantsBlock" class="hidden space-y-4">
+          <div>
+            <label class="block text-sm font-semibold text-brand-900 mb-1.5">Nombre del atributo (ej: Medidas, Color, Sabor)</label>
+            <input id="mediaVariantAttr" type="text" placeholder="Ej: Medidas" class="w-full rounded-lg border border-brand-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400">
+          </div>
+          <div id="mediaVariantRows" class="space-y-3"></div>
+          <button id="mediaAddVariantRowBtn" class="text-sm font-semibold text-brand-600 hover:text-brand-800">+ Agregar opción</button>
+        </div>
+      </div>
+
+      <p id="mediaError" class="hidden text-sm text-red-600 mt-4"></p>
+
+      <div class="flex gap-3 mt-6">
+        <button id="cancelMediaBtn" class="flex-1 border-2 border-brand-200 text-brand-700 font-semibold py-2.5 rounded-full">Cancelar</button>
+        <button id="saveMediaBtn" class="flex-1 bg-brand-500 hover:bg-brand-600 text-white font-semibold py-2.5 rounded-full transition-colors">Guardar y publicar</button>
       </div>
     </div>
   </div>
@@ -318,15 +364,22 @@
     body.innerHTML = list.map(function (p) {
       var idx = state.catalog.products.indexOf(p);
       var imgHtml = p.m
-        ? '<img src="' + p.m + '" class="w-12 h-12 rounded-lg object-cover">'
+        ? '<img src="' + p.m + '" class="w-12 h-12 rounded-lg object-contain bg-brand-50">'
         : '<div class="w-12 h-12 rounded-lg bg-brand-50 flex items-center justify-center text-brand-300 text-[10px]">Sin foto</div>';
+      var hasVariants = p.variants && p.variants.options && p.variants.options.length;
+      var priceCell = hasVariants
+        ? '<p class="text-xs text-brand-500 italic px-1">Definido por variantes</p>'
+        : '<input type="number" step="0.01" min="0" data-idx="' + idx + '" data-field="p" value="' + p.p + '" class="field-input w-28 rounded-lg border border-brand-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300">';
+      var mediaSummary = (p.images && p.images.length > 1 ? p.images.length + ' fotos' : (p.images && p.images.length === 1 ? '1 foto' : 'Sin fotos')) +
+        (hasVariants ? ' · ' + p.variants.options.length + ' variantes' : '');
       return (
         '<tr class="border-t border-brand-50 align-top">' +
         '<td class="px-4 py-3">' + imgHtml + '</td>' +
         '<td class="px-4 py-3"><input type="text" data-idx="' + idx + '" data-field="n" value="' + p.n.replace(/"/g, '&quot;') + '" class="field-input w-full rounded-lg border border-brand-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300"></td>' +
-        '<td class="px-4 py-3"><input type="number" step="0.01" min="0" data-idx="' + idx + '" data-field="p" value="' + p.p + '" class="field-input w-28 rounded-lg border border-brand-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300"></td>' +
+        '<td class="px-4 py-3">' + priceCell + '</td>' +
         '<td class="px-4 py-3"><input type="checkbox" data-idx="' + idx + '" data-field="s" ' + (p.s ? 'checked' : '') + ' class="field-checkbox w-5 h-5"></td>' +
         '<td class="px-4 py-3">' + categoryCheckboxesHtml(p, idx) + '</td>' +
+        '<td class="px-4 py-3"><p class="text-xs text-brand-500 mb-1.5">' + mediaSummary + '</p><button data-idx="' + idx + '" class="media-btn text-brand-600 hover:text-brand-800 text-xs font-semibold">Editar fotos/variantes</button></td>' +
         '<td class="px-4 py-3"><button data-idx="' + idx + '" class="delete-btn text-red-500 hover:text-red-700 text-xs font-semibold">Eliminar</button></td>' +
         '</tr>'
       );
@@ -369,6 +422,11 @@
         saveCatalog('Producto eliminado.').catch(function (err) {
           showStatus('Error al eliminar: ' + err.message, 'error');
         });
+      });
+    });
+    body.querySelectorAll('.media-btn').forEach(function (el) {
+      el.addEventListener('click', function () {
+        openMediaModal(parseInt(el.dataset.idx, 10));
       });
     });
   }
@@ -485,6 +543,154 @@
     }).finally(function () {
       btn.disabled = false;
       btn.textContent = 'Publicar producto';
+    });
+  });
+
+  // ---------- Media (images & variants) modal ----------
+  var mediaState = null;
+
+  function openMediaModal(idx) {
+    var product = state.catalog.products[idx];
+    mediaState = {
+      idx: idx,
+      images: (product.images && product.images.length) ? product.images.slice() : (product.m ? [product.m] : []),
+      hasVariants: !!(product.variants && product.variants.options && product.variants.options.length),
+      variantAttr: product.variants ? product.variants.attribute : '',
+      variantOptions: product.variants ? product.variants.options.map(function (o) { return Object.assign({}, o); }) : [],
+    };
+    document.getElementById('mediaProductName').textContent = product.n;
+    document.getElementById('mediaError').classList.add('hidden');
+    document.getElementById('mediaHasVariants').checked = mediaState.hasVariants;
+    document.getElementById('mediaVariantAttr').value = mediaState.variantAttr;
+    document.getElementById('mediaVariantsBlock').classList.toggle('hidden', !mediaState.hasVariants);
+    if (!mediaState.variantOptions.length) mediaState.variantOptions.push({ label: '', price: 0, stock: true, image: null });
+    renderMediaImages();
+    renderVariantRows();
+    document.getElementById('mediaModal').classList.remove('hidden');
+  }
+
+  function closeMediaModal() {
+    document.getElementById('mediaModal').classList.add('hidden');
+    mediaState = null;
+  }
+
+  function renderMediaImages() {
+    var grid = document.getElementById('mediaImagesGrid');
+    grid.innerHTML = mediaState.images.map(function (src, i) {
+      return '<div class="relative aspect-square rounded-lg overflow-hidden bg-brand-50 border border-brand-100">' +
+        '<img src="' + src + '" class="w-full h-full object-contain p-1">' +
+        '<button data-i="' + i + '" class="remove-img-btn absolute top-1 right-1 w-5 h-5 rounded-full bg-red-500 text-white text-xs leading-5 text-center">×</button>' +
+        '</div>';
+    }).join('');
+    grid.querySelectorAll('.remove-img-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        mediaState.images.splice(parseInt(btn.dataset.i, 10), 1);
+        renderMediaImages();
+      });
+    });
+  }
+
+  document.getElementById('mediaAddImageInput').addEventListener('change', function (e) {
+    var file = e.target.files[0];
+    if (!file || !mediaState) return;
+    var statusEl = document.getElementById('mediaImageStatus');
+    statusEl.textContent = 'Subiendo...';
+    var product = state.catalog.products[mediaState.idx];
+    resizeImageFile(file, 1000, 0.82).then(function (base64) {
+      var filePath = 'images/img-' + product.id + '-' + Date.now() + '.jpg';
+      return gh('/contents/' + filePath, {
+        method: 'PUT',
+        body: JSON.stringify({ message: 'Subir foto para: ' + product.n, content: base64, branch: 'main' }),
+      }).then(function () { return filePath; });
+    }).then(function (filePath) {
+      mediaState.images.push(filePath);
+      renderMediaImages();
+      statusEl.textContent = 'Foto subida.';
+      e.target.value = '';
+      setTimeout(function () { statusEl.textContent = ''; }, 3000);
+    }).catch(function (err) {
+      statusEl.textContent = 'Error: ' + err.message;
+    });
+  });
+
+  function renderVariantRows() {
+    var container = document.getElementById('mediaVariantRows');
+    container.innerHTML = mediaState.variantOptions.map(function (opt, i) {
+      return '<div class="flex flex-wrap items-center gap-2 bg-brand-50/60 rounded-lg p-3">' +
+        '<input type="text" placeholder="Ej: Chica" data-i="' + i + '" data-f="label" value="' + (opt.label || '').replace(/"/g, '&quot;') + '" class="variant-field flex-1 min-w-[100px] rounded-lg border border-brand-200 px-3 py-2 text-sm">' +
+        '<input type="number" step="0.01" min="0" placeholder="Precio" data-i="' + i + '" data-f="price" value="' + (opt.price || 0) + '" class="variant-field w-28 rounded-lg border border-brand-200 px-3 py-2 text-sm">' +
+        '<label class="inline-flex items-center gap-1 text-xs"><input type="checkbox" data-i="' + i + '" data-f="stock" class="variant-field" ' + (opt.stock ? 'checked' : '') + '> En stock</label>' +
+        '<button data-i="' + i + '" class="remove-variant-btn text-red-500 text-xs font-semibold">Quitar</button>' +
+        '</div>';
+    }).join('');
+
+    container.querySelectorAll('.variant-field').forEach(function (el) {
+      var evt = el.type === 'checkbox' ? 'change' : 'input';
+      el.addEventListener(evt, function () {
+        var i = parseInt(el.dataset.i, 10);
+        var f = el.dataset.f;
+        if (f === 'price') mediaState.variantOptions[i][f] = parseFloat(el.value) || 0;
+        else if (f === 'stock') mediaState.variantOptions[i][f] = el.checked;
+        else mediaState.variantOptions[i][f] = el.value;
+      });
+    });
+    container.querySelectorAll('.remove-variant-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        mediaState.variantOptions.splice(parseInt(btn.dataset.i, 10), 1);
+        renderVariantRows();
+      });
+    });
+  }
+
+  document.getElementById('mediaHasVariants').addEventListener('change', function (e) {
+    mediaState.hasVariants = e.target.checked;
+    document.getElementById('mediaVariantsBlock').classList.toggle('hidden', !mediaState.hasVariants);
+  });
+  document.getElementById('mediaVariantAttr').addEventListener('input', function (e) {
+    mediaState.variantAttr = e.target.value;
+  });
+  document.getElementById('mediaAddVariantRowBtn').addEventListener('click', function () {
+    mediaState.variantOptions.push({ label: '', price: 0, stock: true, image: null });
+    renderVariantRows();
+  });
+  document.getElementById('closeMediaModalBtn').addEventListener('click', closeMediaModal);
+  document.getElementById('cancelMediaBtn').addEventListener('click', closeMediaModal);
+
+  document.getElementById('saveMediaBtn').addEventListener('click', function () {
+    var errEl = document.getElementById('mediaError');
+    errEl.classList.add('hidden');
+
+    if (mediaState.hasVariants) {
+      if (!mediaState.variantAttr.trim()) { errEl.textContent = 'Ingresá el nombre del atributo (ej: Medidas).'; errEl.classList.remove('hidden'); return; }
+      var validOptions = mediaState.variantOptions.filter(function (o) { return o.label.trim(); });
+      if (!validOptions.length) { errEl.textContent = 'Agregá al menos una opción con nombre.'; errEl.classList.remove('hidden'); return; }
+    }
+
+    var product = state.catalog.products[mediaState.idx];
+    product.images = mediaState.images;
+    product.m = mediaState.images[0] || null;
+    if (mediaState.hasVariants) {
+      product.variants = {
+        attribute: mediaState.variantAttr.trim(),
+        options: mediaState.variantOptions.filter(function (o) { return o.label.trim(); }),
+      };
+      product.o = true;
+    } else {
+      product.variants = null;
+    }
+
+    var btn = document.getElementById('saveMediaBtn');
+    btn.disabled = true;
+    btn.textContent = 'Guardando...';
+    saveCatalog('Fotos y variantes actualizadas.').then(function () {
+      closeMediaModal();
+      renderTable();
+    }).catch(function (err) {
+      errEl.textContent = 'Error al guardar: ' + err.message;
+      errEl.classList.remove('hidden');
+    }).finally(function () {
+      btn.disabled = false;
+      btn.textContent = 'Guardar y publicar';
     });
   });
 

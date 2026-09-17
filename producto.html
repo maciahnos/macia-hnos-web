@@ -246,15 +246,27 @@
     '<rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.4" fill="currentColor" stroke="none"/>' +
     '<path d="M4 16l4.5-4.5a1.5 1.5 0 012.12 0L15 15.9M14 14.5l1.5-1.5a1.5 1.5 0 012.12 0L20 15.5"/></svg></div>';
 
+  function minVariantPrice(p) {
+    if (!p.variants || !p.variants.options || !p.variants.options.length) return null;
+    var prices = p.variants.options.map(function (o) { return o.price; }).filter(function (n) { return n > 0; });
+    return prices.length ? Math.min.apply(null, prices) : null;
+  }
+
   function relatedCard(p) {
     var safeName = escapeHtml(p.n);
     var href = 'producto.html?id=' + p.id;
     var imgHtml = p.m
-      ? '<img src="' + p.m + '" alt="' + safeName + '" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">'
+      ? '<img src="' + p.m + '" alt="' + safeName + '" loading="lazy" class="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300">'
       : PLACEHOLDER_ICON;
-    var priceHtml = p.p > 0
-      ? '<p class="text-brand-900 font-heading font-700">' + money(p.p) + '</p>'
-      : '<p class="text-brand-400 text-sm font-medium">Consultar precio</p>';
+    var minVariant = minVariantPrice(p);
+    var priceHtml;
+    if (minVariant) {
+      priceHtml = '<p class="text-brand-900 font-heading font-700">Desde ' + money(minVariant) + '</p>';
+    } else if (p.p > 0) {
+      priceHtml = '<p class="text-brand-900 font-heading font-700">' + money(p.p) + '</p>';
+    } else {
+      priceHtml = '<p class="text-brand-400 text-sm font-medium">Consultar precio</p>';
+    }
 
     return (
       '<a href="' + href + '" class="group bg-white rounded-2xl border border-brand-100 overflow-hidden hover:shadow-lg transition-shadow flex flex-col">' +
@@ -282,36 +294,62 @@
 
     document.title = product.n + ' | Macia Hnos.';
     document.getElementById('breadcrumbName').textContent = product.n;
-    document.getElementById('floatingWa').href = waLink(product.n);
 
-    var imgHtml = product.m
-      ? '<img src="' + product.m + '" alt="' + escapeHtml(product.n) + '" class="w-full h-full object-cover">'
-      : PLACEHOLDER_ICON;
-
-    var badges = '';
-    if (!product.s) badges += '<span class="bg-red-500 text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full">Sin stock</span>';
-    if (product.o) badges += '<span class="bg-brand-900 text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full">Múltiples variantes</span>';
-    if (product.f) badges += '<span class="bg-ember-500 text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full">Destacado</span>';
+    var images = (product.images && product.images.length) ? product.images.slice() : (product.m ? [product.m] : []);
+    var hasVariants = product.variants && product.variants.options && product.variants.options.length;
+    var selectedVariant = hasVariants ? 0 : -1;
 
     var catBadges = product.c.map(function (slug) {
       return '<a href="index.html#catalogo" class="text-xs font-semibold text-brand-600 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-full transition-colors">' + (CAT_LABELS[slug] || slug) + '</a>';
     }).join('');
 
-    var priceHtml = product.p > 0
-      ? '<p class="font-heading text-3xl sm:text-4xl font-800 text-brand-900">' + money(product.p) + '</p>'
-      : '<p class="font-heading text-xl font-700 text-brand-400">Consultar precio</p>';
+    function galleryHtml() {
+      var mainImg = images[0]
+        ? '<img id="mainProductImage" src="' + images[0] + '" alt="' + escapeHtml(product.n) + '" class="w-full h-full object-contain p-6">'
+        : PLACEHOLDER_ICON.replace('w-16 h-16', 'w-24 h-24');
+      var thumbs = images.length > 1
+        ? '<div id="thumbRow" class="flex gap-2 mt-3 flex-wrap">' + images.map(function (src, i) {
+            return '<button data-idx="' + i + '" class="thumb-btn w-16 h-16 rounded-lg border-2 ' + (i === 0 ? 'border-brand-500' : 'border-brand-100') + ' overflow-hidden bg-brand-50">' +
+              '<img src="' + src + '" class="w-full h-full object-contain p-1" alt="">' +
+              '</button>';
+          }).join('') + '</div>'
+        : '';
+      return (
+        '<div>' +
+        '<div id="mainImageBox" class="rounded-3xl overflow-hidden bg-brand-50 aspect-square relative ring-1 ring-brand-100">' + mainImg +
+        '<div id="detailBadges" class="absolute top-4 left-4 flex flex-wrap gap-2"></div>' +
+        '</div>' +
+        thumbs +
+        '</div>'
+      );
+    }
+
+    function variantSelectorHtml() {
+      if (!hasVariants) return '';
+      return (
+        '<div class="mt-6">' +
+        '<p class="text-sm font-semibold text-brand-900 mb-2">' + escapeHtml(product.variants.attribute) + '</p>' +
+        '<div id="variantOptions" class="flex flex-wrap gap-2">' +
+        product.variants.options.map(function (opt, i) {
+          return '<button data-idx="' + i + '" class="variant-btn px-4 py-2 rounded-full text-sm font-semibold border-2 transition-colors ' +
+            (i === 0 ? 'border-brand-500 bg-brand-500 text-white' : 'border-brand-200 text-brand-700 hover:border-brand-400') + '">' +
+            escapeHtml(opt.label) + '</button>';
+        }).join('') +
+        '</div>' +
+        '</div>'
+      );
+    }
 
     detailEl.innerHTML =
-      '<div class="rounded-3xl overflow-hidden bg-brand-50 aspect-square relative ring-1 ring-brand-100">' + imgHtml +
-      (badges ? '<div class="absolute top-4 left-4 flex flex-wrap gap-2">' + badges + '</div>' : '') +
-      '</div>' +
+      galleryHtml() +
       '<div class="flex flex-col">' +
       '<h1 class="font-heading text-2xl sm:text-3xl font-800 text-brand-900 leading-snug">' + escapeHtml(product.n) + '</h1>' +
-      '<div class="mt-4">' + priceHtml + '</div>' +
+      '<div id="priceBox" class="mt-4"></div>' +
       '<p class="text-sm text-brand-500 mt-1">Precio no incluye IVA · Sujeto a stock</p>' +
+      variantSelectorHtml() +
       '<div class="flex flex-wrap gap-2 mt-6">' + catBadges + '</div>' +
       '<div class="mt-8 flex flex-col sm:flex-row gap-3">' +
-      '<a href="' + waLink(product.n) + '" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fb959] text-white font-semibold px-7 py-3.5 rounded-full transition-colors">' +
+      '<a id="whatsappCtaLink" href="#" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1fb959] text-white font-semibold px-7 py-3.5 rounded-full transition-colors">' +
       '<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.52 3.48A11.94 11.94 0 0012.04 0C5.5 0 .2 5.3.2 11.84c0 2.09.55 4.13 1.6 5.93L0 24l6.4-1.68a11.87 11.87 0 005.64 1.44h.01c6.54 0 11.85-5.3 11.85-11.85 0-3.17-1.24-6.14-3.38-8.43zM12.05 21.4h-.01a9.6 9.6 0 01-4.9-1.34l-.35-.21-3.63.95.97-3.55-.23-.36a9.58 9.58 0 01-1.47-5.1c0-5.3 4.32-9.62 9.63-9.62 2.57 0 4.98 1 6.8 2.82a9.56 9.56 0 012.82 6.8c0 5.31-4.32 9.61-9.63 9.61zm5.28-7.2c-.29-.15-1.71-.85-1.98-.94-.27-.1-.46-.15-.66.14-.19.29-.75.94-.92 1.13-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.32-1.44-.86-.76-1.44-1.71-1.6-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.2.05-.36-.02-.51-.08-.15-.66-1.6-.91-2.19-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.51.07-.78.36-.27.29-1.02 1-1.02 2.43 0 1.43 1.04 2.82 1.19 3.01.15.2 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.71-.7 1.95-1.37.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/></svg>' +
       'Consultar por WhatsApp' +
       '</a>' +
@@ -323,7 +361,65 @@
       '<p>Contactanos para coordinar cantidades mayoristas, stock disponible y forma de entrega.</p>' +
       '<p>Tel: 4612-6365 · info@maciahnos.com</p>' +
       '</div>' +
+      (hasVariants ? (
+        '<div class="mt-10 pt-6 border-t border-brand-100">' +
+        '<h2 class="font-heading text-lg font-800 text-brand-900 mb-3">Información adicional</h2>' +
+        '<table class="w-full text-sm">' +
+        '<tr class="border-t border-brand-100"><td class="py-2 pr-4 font-semibold text-brand-800 align-top w-1/3">' + escapeHtml(product.variants.attribute) + '</td>' +
+        '<td class="py-2 text-brand-600">' + product.variants.options.map(function (o) { return escapeHtml(o.label); }).join(', ') + '</td></tr>' +
+        '</table>' +
+        '</div>'
+      ) : '') +
       '</div>';
+
+    function updateSelection() {
+      var variant = hasVariants ? product.variants.options[selectedVariant] : null;
+      var price = variant ? variant.price : product.p;
+      var inStock = variant ? variant.stock : product.s;
+      var img = (variant && variant.image) ? variant.image : images[0];
+
+      document.getElementById('priceBox').innerHTML = price > 0
+        ? '<p class="font-heading text-3xl sm:text-4xl font-800 text-brand-900">' + money(price) + '</p>'
+        : '<p class="font-heading text-xl font-700 text-brand-400">Consultar precio</p>';
+
+      var badges = '';
+      if (!inStock) badges += '<span class="bg-red-500 text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full">Sin stock</span>';
+      if (product.f) badges += '<span class="bg-ember-500 text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full">Destacado</span>';
+      document.getElementById('detailBadges').innerHTML = badges;
+
+      if (img) {
+        var mainImgEl = document.getElementById('mainProductImage');
+        if (mainImgEl) mainImgEl.src = img;
+      }
+
+      var waText = variant ? (product.n + ' (' + variant.label + ')') : product.n;
+      document.getElementById('whatsappCtaLink').href = waLink(waText);
+      document.getElementById('floatingWa').href = waLink(waText);
+    }
+
+    document.querySelectorAll('.thumb-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('mainProductImage').src = images[parseInt(btn.dataset.idx, 10)];
+        document.querySelectorAll('.thumb-btn').forEach(function (b) { b.classList.remove('border-brand-500'); b.classList.add('border-brand-100'); });
+        btn.classList.remove('border-brand-100');
+        btn.classList.add('border-brand-500');
+      });
+    });
+
+    document.querySelectorAll('.variant-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        selectedVariant = parseInt(btn.dataset.idx, 10);
+        document.querySelectorAll('.variant-btn').forEach(function (b) {
+          b.classList.remove('border-brand-500', 'bg-brand-500', 'text-white');
+          b.classList.add('border-brand-200', 'text-brand-700');
+        });
+        btn.classList.remove('border-brand-200', 'text-brand-700');
+        btn.classList.add('border-brand-500', 'bg-brand-500', 'text-white');
+        updateSelection();
+      });
+    });
+
+    updateSelection();
 
     var related = catalog.products.filter(function (p) {
       return p.id !== product.id && p.c.some(function (c) { return product.c.indexOf(c) !== -1; });
