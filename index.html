@@ -715,7 +715,7 @@
     });
   }
 
-  fetch('products.json')
+  fetch('products.json?v=' + Date.now(), { cache: 'no-store' })
     .then(function (res) { return res.json(); })
     .then(function (data) {
       CATALOG = data;
