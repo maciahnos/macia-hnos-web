@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de administración | Macia Hnos.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { heading: ['Poppins', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+        colors: {
+          brand: { 50:'#eef5ff',100:'#dcebff',200:'#b3d4ff',300:'#7ab3ff',400:'#3f8bff',500:'#1655a3',600:'#124a8c',700:'#0e3b70',800:'#0b3155',900:'#082441' },
+          ember: { 400:'#f5a24d',500:'#ef8c2a',600:'#d9721a' },
+        },
+      },
+    },
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  h1,h2,h3,.font-heading { font-family: 'Poppins', sans-serif; }
+  input[type="checkbox"] { accent-color: #1655a3; }
+</style>
+</head>
+<body class="bg-brand-50/60 text-brand-900 antialiased min-h-screen">
+
+<!-- Login gate -->
+<div id="loginGate" class="min-h-screen flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+    <div class="flex items-center gap-3 mb-6">
+      <img src="images/logo-header.png" alt="Macia Hnos." class="h-10 w-auto">
+    </div>
+    <h1 class="font-heading text-xl font-800 text-brand-900 mb-2">Panel de administración</h1>
+    <p class="text-sm text-brand-500 mb-6">Ingresá tu token de acceso para editar el catálogo (productos, precios, stock).</p>
+
+    <label class="block text-sm font-semibold text-brand-900 mb-1.5">Token de acceso</label>
+    <input id="tokenInput" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full rounded-lg border border-brand-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400 mb-2 font-mono text-sm">
+    <p id="loginError" class="hidden text-sm text-red-600 mb-2"></p>
+    <button id="loginBtn" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-semibold py-3 rounded-lg transition-colors">Ingresar</button>
+
+    <details class="mt-6 text-sm text-brand-500">
+      <summary class="cursor-pointer font-semibold text-brand-600">¿No tenés un token?</summary>
+      <p class="mt-2 leading-relaxed">Pedile el token de acceso a quien administra la cuenta de GitHub del sitio (maciahnos). Se guarda solo en este navegador, nunca se comparte con nadie más.</p>
+    </details>
+  </div>
+</div>
+
+<!-- Admin panel -->
+<div id="panel" class="hidden">
+  <header class="sticky top-0 z-40 bg-white border-b border-brand-100 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="images/logo-header.png" alt="Macia Hnos." class="h-9 w-auto">
+        <span class="font-heading font-700 text-brand-900 hidden sm:inline">Panel de administración</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="dirtyBadge" class="hidden text-xs font-semibold bg-ember-50 text-ember-600 px-3 py-1.5 rounded-full">Cambios sin guardar</span>
+        <button id="saveBtn" class="bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>Guardar cambios</button>
+        <button id="logoutBtn" class="text-sm text-brand-500 hover:text-red-600 font-medium">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <div id="statusBanner" class="hidden mb-6 rounded-xl px-4 py-3 text-sm font-medium"></div>
+
+    <!-- Toolbar -->
+    <div class="flex flex-col sm:flex-row gap-3 sm:items-center justify-between mb-6">
+      <div class="relative w-full sm:max-w-sm">
+        <svg class="w-5 h-5 text-brand-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+        <input id="searchInput" type="text" placeholder="Buscar producto..." class="w-full pl-12 pr-4 py-2.5 rounded-full border border-brand-200 focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white">
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="countLabel" class="text-sm text-brand-500"></span>
+        <button id="addProductBtn" class="inline-flex items-center gap-2 bg-ember-500 hover:bg-ember-600 text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+          Agregar producto
+        </button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="bg-white rounded-2xl border border-brand-100 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-brand-50/80 text-brand-600 text-xs uppercase tracking-wide">
+            <tr>
+              <th class="text-left px-4 py-3 font-semibold">Foto</th>
+              <th class="text-left px-4 py-3 font-semibold min-w-[220px]">Nombre</th>
+              <th class="text-left px-4 py-3 font-semibold">Precio (ARS)</th>
+              <th class="text-left px-4 py-3 font-semibold">Stock</th>
+              <th class="text-left px-4 py-3 font-semibold min-w-[240px]">Categorías</th>
+              <th class="text-left px-4 py-3 font-semibold"></th>
+            </tr>
+          </thead>
+          <tbody id="productsBody"></tbody>
+        </table>
+      </div>
+      <p id="loadingRow" class="text-center text-brand-400 py-10">Cargando catálogo...</p>
+    </div>
+  </main>
+</div>
+
+<!-- Add product modal -->
+<div id="addModal" class="hidden fixed inset-0 z-50 bg-brand-900/50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="font-heading text-lg font-800 text-brand-900">Agregar producto</h2>
+        <button id="closeModalBtn" class="text-brand-400 hover:text-brand-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-brand-900 mb-1.5">Nombre del producto</label>
+          <input id="newName" type="text" placeholder="Ej: Molde para tortas 24cm" class="w-full rounded-lg border border-brand-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-brand-900 mb-1.5">Precio (ARS, dejar en 0 si es "Consultar precio")</label>
+          <input id="newPrice" type="number" min="0" step="0.01" placeholder="0" class="w-full rounded-lg border border-brand-200 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-400">
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-brand-900 mb-1.5">Categorías</label>
+          <div id="newCategories" class="flex flex-wrap gap-2"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <input id="newInStock" type="checkbox" checked class="w-4 h-4">
+          <label for="newInStock" class="text-sm font-medium text-brand-800">En stock</label>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-brand-900 mb-1.5">Foto del producto</label>
+          <input id="newImage" type="file" accept="image/*" class="w-full text-sm">
+          <p class="text-xs text-brand-400 mt-1">Se comprime automáticamente antes de subir.</p>
+        </div>
+      </div>
+
+      <p id="addError" class="hidden text-sm text-red-600 mt-4"></p>
+
+      <div class="flex gap-3 mt-6">
+        <button id="cancelAddBtn" class="flex-1 border-2 border-brand-200 text-brand-700 font-semibold py-2.5 rounded-full">Cancelar</button>
+        <button id="confirmAddBtn" class="flex-1 bg-brand-500 hover:bg-brand-600 text-white font-semibold py-2.5 rounded-full transition-colors">Publicar producto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var OWNER = 'maciahnos';
+  var REPO = 'macia-hnos-web';
+  var API = 'https://api.github.com/repos/' + OWNER + '/' + REPO;
+  var TOKEN_KEY = 'macia_admin_token';
+
+  var CATEGORY_OPTIONS = [
+    { slug: 'materias-primas', label: 'Materias Primas' },
+    { slug: 'bazar-cocina', label: 'Bazar / Cocina' },
+    { slug: 'reposteria', label: 'Repostería' },
+    { slug: 'condimentos', label: 'Condimentos' },
+    { slug: 'moldes', label: 'Moldes' },
+    { slug: 'parpen', label: 'Productos Parpen' },
+  ];
+
+  var state = {
+    token: null,
+    catalog: null,
+    sha: null,
+    dirty: false,
+    search: '',
+  };
+
+  function gh(path, options) {
+    options = options || {};
+    options.headers = Object.assign({
+      'Authorization': 'token ' + state.token,
+      'Accept': 'application/vnd.github+json',
+    }, options.headers || {});
+    return fetch(API + path, options).then(function (res) {
+      if (!res.ok) {
+        return res.json().catch(function () { return {}; }).then(function (body) {
+          throw new Error(body.message || ('Error HTTP ' + res.status));
+        });
+      }
+      return res.json();
+    });
+  }
+
+  function utf8ToBase64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  function base64ToUtf8(b64) {
+    return decodeURIComponent(escape(atob(b64.replace(/\n/g, ''))));
+  }
+
+  function showStatus(msg, type) {
+    var el = document.getElementById('statusBanner');
+    el.textContent = msg;
+    el.className = 'mb-6 rounded-xl px-4 py-3 text-sm font-medium ' +
+      (type === 'error' ? 'bg-red-50 text-red-700' : type === 'success' ? 'bg-green-50 text-green-700' : 'bg-brand-50 text-brand-700');
+    el.classList.remove('hidden');
+    if (type === 'success') setTimeout(function () { el.classList.add('hidden'); }, 4000);
+  }
+
+  function setDirty(v) {
+    state.dirty = v;
+    document.getElementById('saveBtn').disabled = !v;
+    document.getElementById('dirtyBadge').classList.toggle('hidden', !v);
+  }
+
+  // ---------- Auth ----------
+  function tryLogin(token) {
+    state.token = token;
+    var errEl = document.getElementById('loginError');
+    errEl.classList.add('hidden');
+    return gh('').then(function () {
+      localStorage.setItem(TOKEN_KEY, token);
+      document.getElementById('loginGate').classList.add('hidden');
+      document.getElementById('panel').classList.remove('hidden');
+      loadCatalog();
+    }).catch(function (err) {
+      errEl.textContent = 'No se pudo conectar: ' + err.message + '. Revisá el token.';
+      errEl.classList.remove('hidden');
+      state.token = null;
+    });
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', function () {
+    var val = document.getElementById('tokenInput').value.trim();
+    if (!val) return;
+    tryLogin(val);
+  });
+  document.getElementById('tokenInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('loginBtn').click();
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', function () {
+    if (state.dirty && !confirm('Tenés cambios sin guardar. ¿Salir igual?')) return;
+    localStorage.removeItem(TOKEN_KEY);
+    window.location.reload();
+  });
+
+  // ---------- Load / Save catalog ----------
+  function loadCatalog() {
+    document.getElementById('loadingRow').classList.remove('hidden');
+    gh('/contents/products.json').then(function (data) {
+      state.sha = data.sha;
+      state.catalog = JSON.parse(base64ToUtf8(data.content));
+      document.getElementById('loadingRow').classList.add('hidden');
+      renderCategoryCheckboxes();
+      renderTable();
+    }).catch(function (err) {
+      document.getElementById('loadingRow').textContent = 'Error cargando el catálogo: ' + err.message;
+    });
+  }
+
+  function recomputeCategoryCounts() {
+    state.catalog.categories.forEach(function (c) {
+      c.count = state.catalog.products.filter(function (p) { return p.c.indexOf(c.slug) !== -1; }).length;
+    });
+  }
+
+  function saveCatalog(successMsg) {
+    recomputeCategoryCounts();
+    var content = utf8ToBase64(JSON.stringify(state.catalog));
+    return gh('/contents/products.json', {
+      method: 'PUT',
+      body: JSON.stringify({
+        message: 'Actualizar catálogo desde el panel de administración',
+        content: content,
+        sha: state.sha,
+        branch: 'main',
+      }),
+    }).then(function (res) {
+      state.sha = res.content.sha;
+      setDirty(false);
+      showStatus(successMsg || 'Cambios guardados. El sitio se actualiza en 1-2 minutos.', 'success');
+    });
+  }
+
+  document.getElementById('saveBtn').addEventListener('click', function () {
+    document.getElementById('saveBtn').disabled = true;
+    document.getElementById('saveBtn').textContent = 'Guardando...';
+    saveCatalog().catch(function (err) {
+      showStatus('Error al guardar: ' + err.message, 'error');
+    }).finally(function () {
+      document.getElementById('saveBtn').textContent = 'Guardar cambios';
+      document.getElementById('saveBtn').disabled = !state.dirty;
+    });
+  });
+
+  // ---------- Table rendering ----------
+  function filteredProducts() {
+    var q = state.search.trim().toLowerCase();
+    if (!q) return state.catalog.products;
+    return state.catalog.products.filter(function (p) { return p.n.toLowerCase().indexOf(q) !== -1; });
+  }
+
+  function categoryCheckboxesHtml(product, idx) {
+    return CATEGORY_OPTIONS.map(function (cat) {
+      var checked = product.c.indexOf(cat.slug) !== -1;
+      return '<label class="inline-flex items-center gap-1 text-xs bg-brand-50 px-2 py-1 rounded-full cursor-pointer">' +
+        '<input type="checkbox" data-idx="' + idx + '" data-cat="' + cat.slug + '" class="cat-checkbox" ' + (checked ? 'checked' : '') + '>' +
+        cat.label + '</label>';
+    }).join(' ');
+  }
+
+  function renderTable() {
+    var list = filteredProducts();
+    document.getElementById('countLabel').textContent = list.length + ' de ' + state.catalog.products.length + ' productos';
+    var body = document.getElementById('productsBody');
+    body.innerHTML = list.map(function (p) {
+      var idx = state.catalog.products.indexOf(p);
+      var imgHtml = p.m
+        ? '<img src="' + p.m + '" class="w-12 h-12 rounded-lg object-cover">'
+        : '<div class="w-12 h-12 rounded-lg bg-brand-50 flex items-center justify-center text-brand-300 text-[10px]">Sin foto</div>';
+      return (
+        '<tr class="border-t border-brand-50 align-top">' +
+        '<td class="px-4 py-3">' + imgHtml + '</td>' +
+        '<td class="px-4 py-3"><input type="text" data-idx="' + idx + '" data-field="n" value="' + p.n.replace(/"/g, '&quot;') + '" class="field-input w-full rounded-lg border border-brand-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300"></td>' +
+        '<td class="px-4 py-3"><input type="number" step="0.01" min="0" data-idx="' + idx + '" data-field="p" value="' + p.p + '" class="field-input w-28 rounded-lg border border-brand-100 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-300"></td>' +
+        '<td class="px-4 py-3"><input type="checkbox" data-idx="' + idx + '" data-field="s" ' + (p.s ? 'checked' : '') + ' class="field-checkbox w-5 h-5"></td>' +
+        '<td class="px-4 py-3">' + categoryCheckboxesHtml(p, idx) + '</td>' +
+        '<td class="px-4 py-3"><button data-idx="' + idx + '" class="delete-btn text-red-500 hover:text-red-700 text-xs font-semibold">Eliminar</button></td>' +
+        '</tr>'
+      );
+    }).join('');
+
+    body.querySelectorAll('.field-input').forEach(function (el) {
+      el.addEventListener('input', function () {
+        var idx = parseInt(el.dataset.idx, 10);
+        var field = el.dataset.field;
+        var product = state.catalog.products[idx];
+        product[field] = field === 'p' ? (parseFloat(el.value) || 0) : el.value;
+        setDirty(true);
+      });
+    });
+    body.querySelectorAll('.field-checkbox').forEach(function (el) {
+      el.addEventListener('change', function () {
+        var idx = parseInt(el.dataset.idx, 10);
+        state.catalog.products[idx][el.dataset.field] = el.checked;
+        setDirty(true);
+      });
+    });
+    body.querySelectorAll('.cat-checkbox').forEach(function (el) {
+      el.addEventListener('change', function () {
+        var idx = parseInt(el.dataset.idx, 10);
+        var cat = el.dataset.cat;
+        var cats = state.catalog.products[idx].c;
+        var pos = cats.indexOf(cat);
+        if (el.checked && pos === -1) cats.push(cat);
+        if (!el.checked && pos !== -1) cats.splice(pos, 1);
+        setDirty(true);
+      });
+    });
+    body.querySelectorAll('.delete-btn').forEach(function (el) {
+      el.addEventListener('click', function () {
+        var idx = parseInt(el.dataset.idx, 10);
+        var product = state.catalog.products[idx];
+        if (!confirm('¿Eliminar "' + product.n + '" del catálogo? Esta acción se guarda de inmediato.')) return;
+        state.catalog.products.splice(idx, 1);
+        renderTable();
+        saveCatalog('Producto eliminado.').catch(function (err) {
+          showStatus('Error al eliminar: ' + err.message, 'error');
+        });
+      });
+    });
+  }
+
+  document.getElementById('searchInput').addEventListener('input', function (e) {
+    state.search = e.target.value;
+    renderTable();
+  });
+
+  // ---------- Add product modal ----------
+  function renderCategoryCheckboxes() {
+    var container = document.getElementById('newCategories');
+    container.innerHTML = CATEGORY_OPTIONS.map(function (cat) {
+      return '<label class="inline-flex items-center gap-1.5 text-sm bg-brand-50 px-3 py-1.5 rounded-full cursor-pointer">' +
+        '<input type="checkbox" value="' + cat.slug + '" class="new-cat-checkbox">' + cat.label + '</label>';
+    }).join(' ');
+  }
+
+  function openModal() {
+    document.getElementById('newName').value = '';
+    document.getElementById('newPrice').value = '';
+    document.getElementById('newInStock').checked = true;
+    document.getElementById('newImage').value = '';
+    document.getElementById('addError').classList.add('hidden');
+    document.querySelectorAll('.new-cat-checkbox').forEach(function (c) { c.checked = false; });
+    document.getElementById('addModal').classList.remove('hidden');
+  }
+  function closeModal() { document.getElementById('addModal').classList.add('hidden'); }
+
+  document.getElementById('addProductBtn').addEventListener('click', openModal);
+  document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+  document.getElementById('cancelAddBtn').addEventListener('click', closeModal);
+
+  function resizeImageFile(file, maxDim, quality) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        img.onload = function () {
+          var w = img.width, h = img.height;
+          if (w > h && w > maxDim) { h = Math.round(h * maxDim / w); w = maxDim; }
+          else if (h > maxDim) { w = Math.round(w * maxDim / h); h = maxDim; }
+          var canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          var dataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve(dataUrl.split(',')[1]);
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function nextId() {
+    var max = 0;
+    state.catalog.products.forEach(function (p) { if (p.id > max) max = p.id; });
+    return Math.max(max + 1, 90000);
+  }
+
+  document.getElementById('confirmAddBtn').addEventListener('click', function () {
+    var name = document.getElementById('newName').value.trim();
+    var price = parseFloat(document.getElementById('newPrice').value) || 0;
+    var inStock = document.getElementById('newInStock').checked;
+    var cats = Array.prototype.slice.call(document.querySelectorAll('.new-cat-checkbox:checked')).map(function (c) { return c.value; });
+    var file = document.getElementById('newImage').files[0];
+    var errEl = document.getElementById('addError');
+    errEl.classList.add('hidden');
+
+    if (!name) { errEl.textContent = 'Ingresá un nombre para el producto.'; errEl.classList.remove('hidden'); return; }
+    if (!cats.length) { errEl.textContent = 'Elegí al menos una categoría.'; errEl.classList.remove('hidden'); return; }
+
+    var btn = document.getElementById('confirmAddBtn');
+    btn.disabled = true;
+    btn.textContent = 'Publicando...';
+
+    var newId = nextId();
+    var imgPathPromise = Promise.resolve(null);
+
+    if (file) {
+      imgPathPromise = resizeImageFile(file, 1000, 0.82).then(function (base64) {
+        var path = 'images/img-' + newId + '.jpg';
+        return gh('/contents/' + path, {
+          method: 'PUT',
+          body: JSON.stringify({
+            message: 'Subir foto de producto nuevo: ' + name,
+            content: base64,
+            branch: 'main',
+          }),
+        }).then(function () { return path; });
+      });
+    }
+
+    imgPathPromise.then(function (imgPath) {
+      state.catalog.products.unshift({
+        id: newId,
+        n: name,
+        p: price,
+        o: false,
+        s: inStock,
+        m: imgPath,
+        c: cats,
+        f: 0,
+      });
+      return saveCatalog('Producto publicado con éxito.');
+    }).then(function () {
+      closeModal();
+      renderTable();
+    }).catch(function (err) {
+      errEl.textContent = 'Error al publicar: ' + err.message;
+      errEl.classList.remove('hidden');
+    }).finally(function () {
+      btn.disabled = false;
+      btn.textContent = 'Publicar producto';
+    });
+  });
+
+  // ---------- Boot ----------
+  var savedToken = localStorage.getItem(TOKEN_KEY);
+  if (savedToken) {
+    document.getElementById('tokenInput').value = savedToken;
+    tryLogin(savedToken);
+  }
+
+  window.addEventListener('beforeunload', function (e) {
+    if (state.dirty) { e.preventDefault(); e.returnValue = ''; }
+  });
+})();
+</script>
+
+</body>
+</html>
